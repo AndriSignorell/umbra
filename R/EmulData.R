@@ -819,7 +819,7 @@ autismus <- function(noise=FALSE){
 
 knochendichte <- function() {
   
-  d.set <- EmulData:::.PackageData("knochendichte.xlsx")
+  d.set <- umbra:::.PackageData("knochendichte.xlsx")
   
   Labels(d.set) <- c("Knochendichte [g/cm<sup>3</sup>]",
                      "Vitamin Dosis Gruppe"
@@ -842,7 +842,7 @@ knochendichte <- function() {
 
 krankenversicherer <- function(){
 
-  d.set <- EmulData:::.PackageData("krankenversicherer.xlsx")
+  d.set <- umbra:::.PackageData("krankenversicherer.xlsx")
   
   Labels(d.set) <- c("Name der Versicherers",      # Versicherer
                      "CH Marktanteil in [Prozent]",      # Marktanteil
@@ -872,7 +872,7 @@ krankenversicherer <- function(){
 
 bankhr <- function(){
   
-  d.set <- EmulData:::.PackageData("bankhr.xlsx")
+  d.set <- umbra:::.PackageData("bankhr.xlsx")
   
   Labels(d.set) <- c("Name der Bank", 
                      "Anzahl Angestellte",
@@ -895,7 +895,7 @@ bankhr <- function(){
 
 detailhändler <- function(){
   
-  d.set <- EmulData:::.PackageData("detailhändler.xlsx")
+  d.set <- umbra:::.PackageData("detailhändler.xlsx")
   
   Labels(d.set) <- c("Identifikationsnummer des Unternehmens", 
                      "Name des Unternehmens",
@@ -914,7 +914,7 @@ detailhändler <- function(){
 
 comcorp <- function(){
   
-  d.set <- EmulData:::.PackageData("comcorp.xlsx")
+  d.set <- umbra:::.PackageData("comcorp.xlsx")
   
   Labels(d.set) <- c("Identifikationsnummer des Unternehmens", 
                      "Name des Unternehmens",
@@ -934,7 +934,7 @@ comcorp <- function(){
 
 skigebiet <- function(){
   
-  d.set <- EmulData:::.PackageData("skigebiet.xlsx")
+  d.set <- umbra:::.PackageData("skigebiet.xlsx")
   
   Labels(d.set) <- c("Name des Skigebiets",
                      "Pistenkilometer in [km]",
@@ -956,7 +956,7 @@ skigebiet <- function(){
 
 kunden <- function(){
 
-  d.set <- EmulData:::.PackageData("kunden.xlsx")
+  d.set <- umbra:::.PackageData("kunden.xlsx")
   
   Labels(d.set) <- c("Identifikationsnummer",     
                      "Alter der Person in [Jahren]",
@@ -981,7 +981,7 @@ kunden <- function(){
 
 bip <- function(n = 20){
   
-  d.set <- EmulData:::.PackageData("bip.xlsx")[1:n, ]
+  d.set <- umbra:::.PackageData("bip.xlsx")[1:n, ]
   
   Labels(d.set) <- c("Land",     
                      "Bruttoinlandprodukt 2023"
@@ -1003,7 +1003,7 @@ bip <- function(n = 20){
 
 operation <- function(){
   
-  d.set <- EmulData:::.PackageData("operation.xlsx")
+  d.set <- umbra:::.PackageData("operation.xlsx")
   
   Labels(d.set) <- c("Verspätung vor dem Memo",     
                      "Verspätung nach Versenden des Memo"
@@ -1030,7 +1030,7 @@ operation <- function(){
 
 vocabular <- function(){
   
-  d.set <- EmulData:::.PackageData("vocabular.xlsx")
+  d.set <- umbra:::.PackageData("vocabular.xlsx")
   
   Labels(d.set) <- c("Jahr der Prüfung",     
                      "Geschlecht des Prüflings",
@@ -1164,7 +1164,7 @@ alpvieh <- function(n=100){
 
 akku <- function(){
   
-  d.set <- EmulData:::.PackageData("akku.xlsx")
+  d.set <- umbra:::.PackageData("akku.xlsx")
   
   Labels(d.set) <- c("Typ des Akkus",     
                      "Anzahl Ladezyklen bis zum Ersatz" 
@@ -1225,7 +1225,7 @@ sonnenblumen <- function(n=60) {
 
 verzögerung <- function(){
   
-  d.set <- EmulData:::.PackageData("verzögerung.xlsx")
+  d.set <- umbra:::.PackageData("verzögerung.xlsx")
   
   Labels(d.set) <- c("Messung vor dem Memo",     
                      "Messung nach dem Memo" 
@@ -1256,7 +1256,7 @@ verzögerung <- function(){
 
 bike <- function(){
   
-  d.set <- EmulData:::.PackageData("bike.xlsx")
+  d.set <- umbra:::.PackageData("bike.xlsx")
   
   Labels(d.set) <- c("Datum","Wochentag","Monat","Ferientag","Jahreszeit",
                      "Wetter","Temperatur in °C","gefühlte Temperatur in °C",
@@ -1279,7 +1279,7 @@ bike <- function(){
 
 arbeitsweg <- function(){
   
-  d.set <- EmulData:::.PackageData("arbeitsweg.xlsx")
+  d.set <- umbra:::.PackageData("arbeitsweg.xlsx")
   
   Labels(d.set) <- c("ID der befragten Person", "Agglomeration (<em>ZH, BE, BS</em>)", 
                      "Transportmittel", "Benötigte Zeit für den Arbeitsweg")
@@ -1381,7 +1381,7 @@ reisekunden <- function(n = 500) {
 
 kreisel <- function(){
   
-  d.set <- EmulData:::.PackageData("kreisel.xlsx")
+  d.set <- umbra:::.PackageData("kreisel.xlsx")
   
   Labels(d.set) <- c("Staulänge ohne Verkehrsleitung", 
                      "Staulänge mit Verkehrsleitung")

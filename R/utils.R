@@ -4,7 +4,7 @@
   
   data.frame(readxl::read_xlsx(
     gettextf("%s/%s", 
-             file.path(find.package("EmulData"), "extdata"), 
+             file.path(find.package("umbra"), "extdata"), 
              filename)), stringsAsFactors = stringsAsFactors)
   
 }
