@@ -120,7 +120,7 @@ daten <- data.frame(
   homeoffice_tage
 )
 
-Label(daten) <- "Ein grosses Schweizer Unternehmen möchte untersuchen, 
+bedrock::label(daten) <- "Ein grosses Schweizer Unternehmen möchte untersuchen, 
 wie stark Mitarbeitende das Homeoffice-Angebot tatsächlich nutzen. 
 Dazu wurden zufällig 250 Mitarbeitende aus verschiedenen Abteilungen 
 ausgewählt. Erfasst wurde die Anzahl Homeoffice-Tage pro Monat. 
@@ -271,7 +271,7 @@ daten <- data.frame(
   bearbeitungszeit
 )
 
-Label(daten) <- "Eine kantonale Verwaltung untersucht die Effizienz 
+bedrock::label(daten) <- "Eine kantonale Verwaltung untersucht die Effizienz 
 verschiedener Abteilungen. Dabei interessiert insbesondere, 
 ob sich die Bearbeitungsdauer von Gesuchen zwischen den 
 Abteilungen unterscheidet. Untersucht werden die Bereiche 
@@ -421,7 +421,7 @@ leistung <- function(){
     vo2max
   )
   
-  Label(daten) <- "Ein Leistungszentrum untersucht die 
+  bedrock::label(daten) <- "Ein Leistungszentrum untersucht die 
   aerobe Leistungsfähigkeit seiner 
   Athletinnen und Athleten. Dazu wurde bei einer Stichprobe von Sportlern 
   die maximale Sauerstoffaufnahme (VO₂max) gemessen.
@@ -563,7 +563,7 @@ schlaf <- function(){
     schlafdauer
   )
   
-  Label(daten) <- "Ein universitäres Forschungsprojekt untersucht 
+  bedrock::label(daten) <- "Ein universitäres Forschungsprojekt untersucht 
   das Schlafverhalten von Medizinstudierenden während des Semesters. 
   Besonders interessiert die Forschenden, ob Faktoren wie Lernaufwand, 
   Studienjahr oder körperliche Aktivität mit der täglichen Schlafdauer 

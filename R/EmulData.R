@@ -15,7 +15,7 @@ schnee <- function(n=507) {
   # schnee()
   
   d.set <- data.frame(proben_id=sample(1000:9999, n),
-                      meereshöhe = RoundTo(abs(rnorm(n, 1200, 350))), 
+                      meereshöhe = bedrock::roundTo(abs(rnorm(n, 1200, 350))), 
                       hanglage= relevel(factor(sample(c("nord","süd", "west/ost"), n, 
                                                       replace=TRUE,
                                                       prob = c(0.4,.3, .3))), ref = "west/ost"),
@@ -28,12 +28,12 @@ schnee <- function(n=507) {
                                   + (d.set$hanglage=="süd")*(-8000) + (d.set$kanton == "GR") * 0.8
                                 + rnorm(nrow(d.set), mean=0, sd=5000), -1))/200
   
-  Labels(d.set) <- c("ID der Schneeprobe","Höhe des Messpunkts über Meer [m]",
+  bedrock::label(d.set, TRUE) <- c("ID der Schneeprobe","Höhe des Messpunkts über Meer [m]",
                      "Ausrichtung des Hangs",
                      "Kanton","Maximale gemessene Schneehöhe während der Messperiode (in [cm])")
   
   
-  Label(d.set) <- "Die Schneehöhe in den Bergen hängt massgeblich von der Meereshöhe ab. 
+  bedrock::label(d.set) <- "Die Schneehöhe in den Bergen hängt massgeblich von der Meereshöhe ab. 
                    Weiter spielen auch die Ausrichtung des Hangs eine Rolle, an Nordhängen 
                    entsteht typischerweise eine dickere Schneedecke.
                    Dieser Zusammenhang soll anhand eines dafür erhobenen Datensatzes genauer 
@@ -61,10 +61,10 @@ alzheimer <- function(n=554) {
                                                  prob=c(0.45, .55))),
                       items       = rpois(n, lambda = c("case"=12,"control"=4)[g])) 
   
-  Labels(d.set) <- c("Proband", "Geschlecht", "Alter", 
+  bedrock::label(d.set, TRUE) <- c("Proband", "Geschlecht", "Alter", 
                      "Studiengruppe (Case/Control)", "Anzahl erinnerte Begriffe im Gedächtnistest")
   
-  Label(d.set) <-  "In einer Alzheimerstudie sollen die Erinnerungsleistungen von 
+  bedrock::label(d.set,) <-  "In einer Alzheimerstudie sollen die Erinnerungsleistungen von 
                     Alzheimer-Patienten (Gruppe <em>case</em>) mit jenen von gesunden 
                     Kontrollen (Gruppe <em>control</em>) verglichen werden. Den Probanden 
                     werden hierfür 30 Gegenstände vorgelegt, die sie hinterher auswendig 
@@ -82,22 +82,22 @@ rinder <- function(n=554) {
   # Schlachtalter:  18-24 Monate
   # Schlachtgewicht: 334 kg
   
-  d.set <- .PackageData("rinder.xlsx")
+  d.set <- .packageData("rinder.xlsx")
   
   d.set$alter <- round(rnorm(nrow(d.set), mean = 21, sd=2), 0)
-  d.set$gewicht <- round(c(0,-23,-30)[Nf(d.set$rasse)] + 
+  d.set$gewicht <- round(c(0,-23,-30)[nf(d.set$rasse)] + 
                            + 0.4* d.set$alter + 
-                           + c(0,+30,+15)[Nf(d.set$futter)] + 
-                           + c(0,-23)[Nf(d.set$sömmerung)] + 
+                           + c(0,+30,+15)[nf(d.set$futter)] + 
+                           + c(0,-23)[nf(d.set$sömmerung)] + 
                            + 290 + rnorm(nrow(d.set), 0, 5), 0)
   d.set$rasse <- factor(d.set$rasse)
   d.set$futter <- factor(d.set$futter)
   d.set$sömmerung <- factor(d.set$sömmerung)
   
-  Labels(d.set) <- c("Schlachtgewicht des Rinds in [kg]", "Alter des Rinds [in Monaten]", 
+  bedrock::label(d.set, TRUE) <- c("Schlachtgewicht des Rinds in [kg]", "Alter des Rinds [in Monaten]", 
                      "Rasse des Rinds", "Futtertyp", "Lage der Sömmerung")
 
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
           Für die Fleischproduktion werden typischerweise diverse Rinderrassen verwendet, 
           die mit 
           verschiedenenartigem Futter ernährt werden. Sowohl die Rasse, das 
@@ -124,13 +124,13 @@ miete <- function() {
   
   # miete()
   
-  d.set <- .PackageData("miete.xlsx")
+  d.set <- .packageData("miete.xlsx")
   
-  Labels(d.set) <- c("Monatsmiete in [EUR]", "Fläche der Wohnung in [m<sup>2</sup>]", 
+  bedrock::label(d.set, TRUE) <- c("Monatsmiete in [EUR]", "Fläche der Wohnung in [m<sup>2</sup>]", 
                      "Bad frisch renoviert (j/n)", "Zentralheizung (j/n)","Ausbaustandard der Küche",
                      "Mietvertragsdauer", "Baujahr kategorisiert", "Wohngegend")
   
-  Label(d.set) <- "Dieser Datensatz enthält einen repräsentativen Auszug 
+  bedrock::label(d.set,) <- "Dieser Datensatz enthält einen repräsentativen Auszug 
                    aus Daten, die anlässlich der Erstellung 
                    eines Mietspiegels in einer grösseren europäischen Stadt erhoben wurden. Ziel 
                    eines Mietspiegels ist die Bestimmung der sogenannten ortsüblichen Miete, deren 
@@ -151,11 +151,11 @@ kalorien <- function() {
   
   # kalorien()
   
-  d.set <- .PackageData("kalorien.xlsx")
+  d.set <- .packageData("kalorien.xlsx")
   
-  Labels(d.set) <- c("Studien Gruppe", "Anzahl aufgenommene Kalorien")
+  bedrock::label(d.set, TRUE) <- c("Studien Gruppe", "Anzahl aufgenommene Kalorien")
   
-  Label(d.set) <-  "In einer Studie soll untersucht werden, ob Personen mit fleischloser Ernährung 
+  bedrock::label(d.set,) <-  "In einer Studie soll untersucht werden, ob Personen mit fleischloser Ernährung 
                     am Tag weniger Kalorien zu sich nehmen als Personen, die Fleisch konsumieren. 
                     Dabei wird angenommen, dass die tägliche Kalorienmenge normalverteilt ist und dass 
                     die Varianz bei beiden Gruppen übereinstimmt."
@@ -182,11 +182,11 @@ choco <- function(n=300) {
                                     labels = c("0", "1-2", "3-4", "5.."))
                       )
   
-  Labels(d.set) <- c("ID", "Geschlecht", "Alter", 
+  bedrock::label(d.set, TRUE) <- c("ID", "Geschlecht", "Alter", 
                      "Wohnregion", "Bezogene Packungen Schokolade", 
                      "Mengen-Kategorie")
   
-    Label(d.set) <- "
+    bedrock::label(d.set,) <- "
           Ein Schweizer Detailhändler gibt eine Umfrage in Auftrag. Es soll 
           herausgefunden werden, ob die Absatzmenge einer bestimmten Schokoladensorte 
           durch die regional unterschiedlichen ökonomischen, sozialen und 
@@ -221,13 +221,13 @@ tierklinik <- function(n=150) {
   levels(d.set$y) <- c("Trockenfutter", "Dosenfutter", "Mischung")
   
   colnames(d.set)[3:4] <- c("rasse", "futter")
-  Labels(d.set) <- c(
+  bedrock::label(d.set, TRUE) <- c(
     "Identifikationsnummer",
     "Alter",
     "Hunderasse",
     "Benötigtes Futter")    
   
-  Label(d.set) <- gettextf("Eine Tierklinik ist auf die tierärztliche Versorgung der vier Hunderassen 
+  bedrock::label(d.set,) <- gettextf("Eine Tierklinik ist auf die tierärztliche Versorgung der vier Hunderassen 
             %s spezialisiert. Die Tiere erhalten entweder Trockenfutter, 
             Dosenfutter oder eine Mischung von beidem, je nachdem was die 
             Besitzer verwenden. Für die Beschaffung des Futters will die Klinik prüfen, 
@@ -259,7 +259,7 @@ socialmedia <- function(n = 1224){
   colnames(d.set)[4:5] <- c("app", "geschlecht")
   d.set <- d.set[,c("id","geschlecht","alter","region","app")]
   
-  Labels(d.set) <- c(
+  bedrock::label(d.set, TRUE) <- c(
     "Identifikationsnummer",
     "Geschlecht der Person",
     "Alter",
@@ -267,7 +267,7 @@ socialmedia <- function(n = 1224){
     "Am häufigsten verwendete Social Media Applikation")    
   
   
-  Label(d.set) <- "Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;
+  bedrock::label(d.set,) <- "Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;
         enthält die Ergebnisse einer Studie, 
         die untersuchen sollte, welche Social Media Applikationen von 
         unterschiedlichen Zielgruppen 
@@ -284,11 +284,11 @@ socialmedia <- function(n = 1224){
 
 smoke <- function(vars=c("educ","cigpric","white","age","income","cigs","restaurn","cigcat")) {
   
-  d.set <- .PackageData("smoke.xlsx")
+  d.set <- .packageData("smoke.xlsx")
   
   d.set$pers_id <- sample(1000:9999, nrow(d.set))
   
-  Labels(d.set) <- c("Anzahl Schuljahre",
+  bedrock::label(d.set, TRUE) <- c("Anzahl Schuljahre",
                      "Durchschnittlicher Preis pro Packung",
                      "Hautfarbe weiss (1=ja, 0=nein)",
                      "Alter der Person",
@@ -300,7 +300,7 @@ smoke <- function(vars=c("educ","cigpric","white","age","income","cigs","restaur
   
   d.set <- d.set[, vars]
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
         Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;enthält Daten zu einer Raucher-Studie, die in 
         den Vereinigten Staaten durchgeführt wurde. In dieser Studie interessierte man sich dafür, 
         welche Effekte die Anzahl pro Tag gerauchter Zigaretten beeinflussen. "
@@ -316,15 +316,15 @@ smoke <- function(vars=c("educ","cigpric","white","age","income","cigs","restaur
 
 eier <- function(vars=c("gewicht","alter","rasse","futter","farbe")){
   
-  d.set <- .PackageData("eier.xlsx", stringsAsFactors = TRUE)
+  d.set <- .packageData("eier.xlsx", stringsAsFactors = TRUE)
   
   
-  Labels(d.set) <- c("Gewicht des Eis in [g]", "Alter des Huhns in Tagen", 
+  bedrock::label(d.set, TRUE) <- c("Gewicht des Eis in [g]", "Alter des Huhns in Tagen", 
                      "Rasse des Huhns", "Futtertyp", "Farbton des Eigelbs")
   
   d.set <- d.set[, vars]
   
-  Label(d.set) <- gettextf('
+  bedrock::label(d.set,) <- gettextf('
             Für die Produktion von Eiern werden typischerweise diverse Huhnrassen 
             verwendet, die mit 
             verschiedenenartigem Futter ernährt werden. Sowohl die Rasse, 
@@ -347,13 +347,13 @@ eier <- function(vars=c("gewicht","alter","rasse","futter","farbe")){
 
 gams <- function() {
   
-  d.set <- .PackageData("gemsen.xlsx", stringsAsFactors = TRUE)
+  d.set <- .packageData("gemsen.xlsx", stringsAsFactors = TRUE)
   
   d.set <- na.omit(d.set)
   d.set$banngebiet <- relevel(factor(d.set$ref, labels=c("ja", "nein")), ref="nein")
   d.set <- d.set[, c("jahr","geschlecht","alter","gewicht","krucken","banngebiet")]
   
-  Labels(d.set) <- c("Abschussjahr",
+  bedrock::label(d.set, TRUE) <- c("Abschussjahr",
                      "Geschlecht des Tieres",
                      "Alter des erlegten Tieres",
                      "Gewicht des erlegten Tieres in [kg]",
@@ -361,7 +361,7 @@ gams <- function() {
                      "Abschussgebiet ist Jagdbanngebiet"
   )
   
-  Label(d.set) <- gettextf("          
+  bedrock::label(d.set,) <- gettextf("          
                    Zur Beurteilung des Zustands der Gamspopulation wurden im Jagdinspektorat 
                    die in der regulären Jagd erlegten Gämsen vermessen.")
   
@@ -375,15 +375,15 @@ gams <- function() {
 hotdog <- function(){
   
   # get base table
-  m <- SetNames(rbind("männlich" = c(53,46,15), 
+  m <- setNamesX(rbind("männlich" = c(53,46,15), 
                       "weiblich" = c(37,72,14)
   ),
   colnames=c("Senf", "Ketchup","Mayonnaise")) 
   names(dimnames(m)) <- c("Geschlecht", "Sauce")
   
-  d.set <- data.frame(id=seq(sum(m)), Untable(m))
+  d.set <- data.frame(id=seq(sum(m)), untable(m))
   
-  Label(d.set) <- Mgsub(c("&level_x&", "&level_y&"),
+  bedrock::label(d.set,) <- bedrock::mGsub(c("&level_x&", "&level_y&"),
                 c(paste(gettextf("<em>%s</em>", gsub("&nbsp;","", rownames(m))), collapse=", "),
                   paste(gettextf("<em>%s</em>", colnames(m)), collapse=", ")),
                 "Die Betreiberin einer Würstchenbude möchte feststellen, ob es 
@@ -403,7 +403,7 @@ hotdog <- function(){
 vegi <- function(){
   
   # get base table
-  m <- SetNames(rbind("Migros" = c(196,22,5), 
+  m <- setNamesX(rbind("Migros" = c(196,22,5), 
                       "Coop" = c(202,30,11),
                       "Lidl" = c(153,13,2),
                       "Aldi" = c(140,9,2)
@@ -411,9 +411,9 @@ vegi <- function(){
   colnames=c("Fleisch", "Vegetarisch", "Vegan")) 
   names(dimnames(m)) <- c("Grossverteiler", "Ernährung")
   
-  d.set <- data.frame(id=seq(sum(m)), Untable(m))
+  d.set <- data.frame(id=seq(sum(m)), untable(m))
   
-  Label(d.set) <- Mgsub(c("&level_x&", "&level_y&"),
+  bedrock::label(d.set,) <- bedrock::mGsub(c("&level_x&", "&level_y&"),
                         c(paste(gettextf("<em>%s</em>", gsub("&nbsp;","", rownames(m))), collapse=", "),
                           paste(gettextf("<em>%s</em>", colnames(m)), collapse=", ")),
                         "Anhand von Einkaufsbelegen verschiedener Grossverteiler haben 
@@ -433,9 +433,9 @@ vegi <- function(){
 lohn <- function() {
   
   # use for: Klasseneinteilung, LinReg
-  d.set <- .PackageData("lohn.xlsx")
+  d.set <- .packageData("lohn.xlsx")
 
-  Label(d.set) <- " Der Datensatz&nbsp;&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;&nbsp;enthält
+  bedrock::label(d.set,) <- " Der Datensatz&nbsp;&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;&nbsp;enthält
                     Lohndaten, die in einer Stichprobe im Raum Edinburgh (Schottland) erhoben wurden.
                     <br>
                     Die Variable&nbsp;<em>stdlohn</em> gibt den Stundenlohn für den jeweiligen 
@@ -456,9 +456,9 @@ aeschen <- function(mu =c(1, 0.8), s=c(0.19, 0.22)){
                    glevels=c("2023","2024"),
                    DIST=c(function(n) round(rnorm(n, mean=mu[1], sd=s[1]), 3),
                           function(n) round(rnorm(n, mean=mu[2], sd=s[2]), 3)))[, c(2,1)]
-  d.set$jahr <- N(d.set$jahr)
+  d.set$jahr <- num(d.set$jahr)
 
-  Label(d.set) <- "Fischer im Bodensee äusserten den Verdacht, dass das Gewicht der Aeschen 
+  bedrock::label(d.set,) <- "Fischer im Bodensee äusserten den Verdacht, dass das Gewicht der Aeschen 
       im 2024 deutlich kleiner sei, als im vorherigen Jahr (2023). Dieses war speziell
       warm gewesen und man vermutete, dass vor allem ältere (und schwerere) Fische besonders unter 
       dem in wärmerem Wasser verringerten Sauerstoffgehalt gelitten hätten und allenfalls vorzeitig 
@@ -487,10 +487,10 @@ blood <- function() {
                systol=a * 0.7 + 110  + (b-25) * 0.2 + rnorm(length(a), mean = 0, sd=5)))
   
   d.set$systol <- round(d.set$systol, 1)
-  d.set <- data.frame(id=seq(nrow(d.set)), DescTools::Sample(d.set))
+  d.set <- data.frame(id=seq(nrow(d.set)), sampleX(d.set))
   rownames(d.set) <- NULL
   
-  Label(d.set) <- "Mit zunehmendem Alter nimmt der Blutdruck im Allgemeinen zu. 
+  bedrock::label(d.set,) <- "Mit zunehmendem Alter nimmt der Blutdruck im Allgemeinen zu. 
                    In einer Studie wurde für 
                    eine Stichprobe mit Probanden beider Geschlechter der 
                    systolische Blutdruck in [mmHg] gemessen."
@@ -512,21 +512,21 @@ blood <- function() {
 dose <- function(){
   
   d.set <- data.frame(proben_id=sample(1000:9999, n <- 507),
-                      wartezeit = RoundTo(abs(rnorm(n, 12, 4))), 
-                      lage= relevel(factor(sample(c("aufrecht","kopfüber"), n, r=T,
+                      wartezeit = roundTo(abs(rnorm(n, 12, 4))), 
+                      lage= relevel(factor(sample(c("aufrecht","kopfüber"), n, replace = TRUE,
                                                   prob = c(0.5,.5))), ref = "aufrecht"),
-                      reinigung= relevel(factor(sample(c("ja","nein"), n, r=T,
+                      reinigung= relevel(factor(sample(c("ja","nein"), n, replace = TRUE,
                                                        prob = c(0.5,.5))), ref = "ja"),
                       dosis = 1)
   
   d.set$dosis <- abs(round(10 + 4*d.set$wartezeit + (d.set$lage=="aufrecht")*500 +
                              + (d.set$reinigung == "ja") * 0.8
                            + rnorm(nrow(d.set), mean=0, sd=500), -1))/2000
-  Labels(d.set) <- c("ID der Probe","Wartezeit in [s] zwischen 2 Inhalationen",
+  bedrock::label(d.set, TRUE) <- c("ID der Probe","Wartezeit in [s] zwischen 2 Inhalationen",
                      "Ausrichtung der Sprühdose",
                      "Reinigungsstoss vor der Benutzung", "Abgegebene Dosis in [mg/l]")
   
-  Label(d.set) <- 'Eine Sprühdose (sog. Inhalator) mit dem Wirkstoff "Fenoterol", 
+  bedrock::label(d.set,) <- 'Eine Sprühdose (sog. Inhalator) mit dem Wirkstoff "Fenoterol", 
                    ein Medikament für Asthmatiker, sollte bei Betätigung des Dosierventils
                    möglichst gleichmässige Dosen abgeben. 
                    Die Stellung der Dose und der zeitliche Abstand zwischen zwei Inhalationen 
@@ -555,12 +555,12 @@ schulnote <- function(){
               2), val = c(1,6))
     )
     
-    Labels(d.dat) <- c("Bildschirmzeit [Stunden pro Tag]",
+    label(d.dat, TRUE) <- c("Bildschirmzeit [Stunden pro Tag]",
                        "Schlafdauer [Stunden pro Nacht]",
                        "Häufigkeit von Freizeitaktivitäten","Schulische Leistung")
     
     
-    Label(d.dat) <- "
+    bedrock::label(d.dat) <- "
     Ein Sozialwissenschaftler möchte untersuchen, wie verschiedene Faktoren die 
     schulischen Leistungen von Jugendlichen beeinflussen.
     Als Zielvariable Y dienen die schulischen Leistungen, 
@@ -591,16 +591,16 @@ einkauf <- function(n = 427){
     ),
       
     einkauf <- 
-      DescTools::RoundTo((rpois(n, 
-                    lambda = c(7, 9, 14)[DescTools::N(filiale)]*4 + 
-                      c(10, 15)[DescTools::N(wagen)]) + runif(n)), 0.05)
+      bedrock::roundTo((rpois(n, 
+                    lambda = c(7, 9, 14)[nf(filiale)]*4 + 
+                      c(10, 15)[nf(wagen)]) + runif(n)), 0.05)
   )
   
-  Labels(d.dat) <- c("Filiale",
+  label(d.dat, TRUE) <- c("Filiale",
                      "Einkaufswagengrösse",
                      "Einkaufsbetrag [in CHF]")
   
-  Label(d.dat) <- gettextf("
+  bedrock::label(d.dat) <- gettextf("
   Ein Detailhändler möchte untersuchen, ob unterschiedliche Grössen der Einkaufswagen
   die Höhe des Einkaufsbetrags beeinflussen. Einer Hypothese nach könnten grosse 
   Einkaufswagen die Kunden animieren, mehr einzukaufen.<br>
@@ -630,12 +630,12 @@ kredit <- function(n){
             0)
   )
   
-  Labels(d.dat) <- c("Finanzwissen [numerisch, auf einer Skala von 1 bis 10]",
+  label(d.dat, TRUE) <- c("Finanzwissen [numerisch, auf einer Skala von 1 bis 10]",
                      "Jahreseinkommen [in Tausend CHF]",
                      "Beschäftigungsstatus",
                      "Kredithöhe")
 
-  Label(d.dat) <- gettextf("
+  bedrock::label(d.dat) <- gettextf("
   Eine Bank möchte untersuchen, welche Faktoren die Höhe eines gewährten Kredits 
   beeinflussen. Dazu wurden Daten von %s Kunden erfasst. 
   Die Zielvariable y ist die Höhe des gewährten Kredits (in Tausend CHF). <br>
@@ -679,7 +679,7 @@ retouren <- function(n=1248, p=0.016, name_x){
 
   d.dat$verkaufsnr <- round(runif(n=n)*1000+1000)
   
-  Label(d.dat) <- "
+  bedrock::label(d.dat) <- "
     Ein Onlineanbieter elektronischer Geräte zählt die Garantiefälle einer Marke innerhalb 
     einer bestimmten Kategorie (Bsp. «TV»), die im After Sales abgewickelt werden müssen.
     So soll die Wahrscheinlichkeit für einen Garantiedefekt während der gesetzlichen 
@@ -691,7 +691,7 @@ retouren <- function(n=1248, p=0.016, name_x){
     &nbsp;&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;&nbsp;. 
     "
 
-  return(Sample(d.dat[, c(4,1:3)]))
+  return(sampleX(d.dat[, c(4,1:3)]))
   
 }
 
@@ -699,9 +699,9 @@ retouren <- function(n=1248, p=0.016, name_x){
 
 birthweight <- function() {
 
-  d.set <- .PackageData("birthweight.xlsx")
+  d.set <- .packageData("birthweight.xlsx")
 
-  Labels(d.set) <- c("Personen-ID",
+  bedrock::label(d.set, TRUE) <- c("Personen-ID",
                      "Familieneinkommen [1'000 $]",
                      "Geburtsgewicht [kg]",
                      "Schuljahre Vater [Jahre]",
@@ -711,7 +711,7 @@ birthweight <- function() {
                      "Anzahl während der Schwangerschaft pro Tag <br>von der Mutter gerauchter Zigaretten" 
   )
   
-  Label(d.set) <- "Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;enthält Daten zu einer Raucher-Studie, die in 
+  bedrock::label(d.set,) <- "Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;enthält Daten zu einer Raucher-Studie, die in 
         den Vereinigten Staaten durchgeführt wurde. In dieser Studie interessierte man unter anderem 
         sich dafür, welchen Einfluss die Anzahl pro Tag gerauchter Zigaretten von Schwangeren auf das 
         Geburtsgewicht der Kinder hatten."
@@ -726,9 +726,9 @@ birthweight <- function() {
 
 sports <- function() {
   
-  d.set <- .PackageData("sports.xlsx")
+  d.set <- .packageData("sports.xlsx")
   
-  Labels(d.set) <- c(
+  bedrock::label(d.set, TRUE) <- c(
     "Anzahl Schuljahre",
     "Wohnhaft in einer Stadt (1=ja, 0=nein)",
     "Alter der Person",
@@ -736,7 +736,7 @@ sports <- function() {
   )
   
 
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
     In einer Studie zum Thema 'Sport und Gesundheit' interessierte man 
     sich dafür, welche persönlichen Eigenschaften die Anzahl absolvierter 
     Sporteinheiten beeinflussen.<br>
@@ -765,7 +765,7 @@ haushaltschaden <- function(n, mu_small=1000, sd_small=500,
     ans
   }
   
-  small_damages <- abs(rnorm(n, mean = mu_small, sd = sigma_small))
+  small_damages <- abs(rnorm(n, mean = mu_small, sd = sd_small))
   large_damages <- rpareto(n, scale = scale, shape = shape)
   
   # Kombinierte Verteilung (80% kleine, 20% grosse Schäden)
@@ -774,7 +774,7 @@ haushaltschaden <- function(n, mu_small=1000, sd_small=500,
                     sample(small_damages, size = n, replace = TRUE), 
                     sample(large_damages, size = n, replace = TRUE))
   
-  Label(damages) <- "Versicherungen verzeichnen häufig eine hohe Frequenz 
+  bedrock::label(damages) <- "Versicherungen verzeichnen häufig eine hohe Frequenz 
                kleiner Schäden und eine seltene, aber hohe Schadenslast durch 
                Extremereignisse. Hausratversicherungen in der Schweiz decken 
                übliche Gefahren wie Diebstahl, Feuer und Wasser ab, wobei 
@@ -804,7 +804,7 @@ autismus <- function(noise=FALSE){
   if(noise)
     dat <- round(jitter(dat, amount = 4))
   
-  Label(dat) <- "Gibt es einen Zusammenhang zwischen Autismus und Stillen? Um dies 
+  bedrock::label(dat) <- "Gibt es einen Zusammenhang zwischen Autismus und Stillen? Um dies 
       festzustellen, wurden Mütter von autistischen und nicht-autistischen 
       Kindern befragt, ob und wenn ja bis zu welchem Zeitpunkt sie ihre Kinder gestillt haben. 
       Die Daten sind in folgender Tabelle dargestellt. Bieten die Daten 
@@ -819,13 +819,13 @@ autismus <- function(noise=FALSE){
 
 knochendichte <- function() {
   
-  d.set <- umbra:::.PackageData("knochendichte.xlsx")
+  d.set <- .packageData("knochendichte.xlsx")
   
-  Labels(d.set) <- c("Knochendichte [g/cm<sup>3</sup>]",
+  bedrock::label(d.set, TRUE) <- c("Knochendichte [g/cm<sup>3</sup>]",
                      "Vitamin Dosis Gruppe"
                     )
 
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
       Vitamin C trägt zu einer normalen Kollagenbildung für eine normale Funktion der 
       Blutgefässe bei.
       Bei Insassen in Pflegeheimen ist die Versorgung besonders wichtig für den 
@@ -842,9 +842,9 @@ knochendichte <- function() {
 
 krankenversicherer <- function(){
 
-  d.set <- umbra:::.PackageData("krankenversicherer.xlsx")
+  d.set <- .packageData("krankenversicherer.xlsx")
   
-  Labels(d.set) <- c("Name der Versicherers",      # Versicherer
+  bedrock::label(d.set, TRUE) <- c("Name der Versicherers",      # Versicherer
                      "CH Marktanteil in [Prozent]",      # Marktanteil
                      "Grössenklasse",              # Typ
                      "Anzahl Versicherte",         # Versicherte
@@ -854,7 +854,7 @@ krankenversicherer <- function(){
                      "Mittlere Zahlungsdauer [in Tagen]" # ZahlDauer
                       )
 
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
               Für die Kunden der Krankenkassen kann es ein wichtiges 
               Merkmal sein, wie schnell dass eingereichte Rechnungen vergütet 
               werden. Für das Jahr 2014 veröffentlichte das Bundesamt für Gesundheit 
@@ -872,14 +872,14 @@ krankenversicherer <- function(){
 
 bankhr <- function(){
   
-  d.set <- umbra:::.PackageData("bankhr.xlsx")
+  d.set <- .packageData("bankhr.xlsx")
   
-  Labels(d.set) <- c("Name der Bank", 
+  bedrock::label(d.set, TRUE) <- c("Name der Bank", 
                      "Anzahl Angestellte",
                      "Mittlere Reaktionsdauer [in Tagen]"
   )
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
               Um die Personalabteilungen von Banken zu vergleichen, wurde in einer 
               experimentellen Studie &n& Banken jeweils 4 Bewerbungen zugestellt und 
               die mittlere Anzahl Tage festgehalten, die zwischen dem Einreichen 
@@ -895,14 +895,14 @@ bankhr <- function(){
 
 detailhändler <- function(){
   
-  d.set <- umbra:::.PackageData("detailhändler.xlsx")
+  d.set <- .packageData("detailhändler.xlsx")
   
-  Labels(d.set) <- c("Identifikationsnummer des Unternehmens", 
+  bedrock::label(d.set, TRUE) <- c("Identifikationsnummer des Unternehmens", 
                      "Name des Unternehmens",
                      "geschätzter Jahresumsatz in [Mio CHF]"
   )
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
               Die Liste enthält den Jahresumsatz von &n& auf dem Schweizer Markt 
               aktiven Unternehmen aus dem Detailhandel.<br>
               "
@@ -914,15 +914,15 @@ detailhändler <- function(){
 
 comcorp <- function(){
   
-  d.set <- umbra:::.PackageData("comcorp.xlsx")
+  d.set <- .packageData("comcorp.xlsx")
   
-  Labels(d.set) <- c("Identifikationsnummer des Unternehmens", 
+  bedrock::label(d.set, TRUE) <- c("Identifikationsnummer des Unternehmens", 
                      "Name des Unternehmens",
                      "geschätzter Jahresumsatz in [Mio CHF]",
                      "geschätzter Anzahl Kunden"
   )
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
               Die Liste enthält den Jahresumsatz von &n& auf dem Schweizer Markt 
               aktiven Unternehmen aus dem Detailhandel.<br>
               "
@@ -934,15 +934,15 @@ comcorp <- function(){
 
 skigebiet <- function(){
   
-  d.set <- umbra:::.PackageData("skigebiet.xlsx")
+  d.set <- .packageData("skigebiet.xlsx")
   
-  Labels(d.set) <- c("Name des Skigebiets",
+  bedrock::label(d.set, TRUE) <- c("Name des Skigebiets",
                      "Pistenkilometer in [km]",
                      "geschätzter Anzahl Besucher pro Jahr",
                      "geschätzter Jahresumsatz in [Mio CHF]"
   )
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
               Die Liste enthält den die Anzahl Pistenkilometer, die Anzahl 
               Besucher und den geschätzten Jahresumsatz von &n& Schweizer
               Skigebiete.<br>
@@ -956,16 +956,16 @@ skigebiet <- function(){
 
 kunden <- function(){
 
-  d.set <- umbra:::.PackageData("kunden.xlsx")
+  d.set <- .packageData("kunden.xlsx")
   
-  Labels(d.set) <- c("Identifikationsnummer",     
+  bedrock::label(d.set, TRUE) <- c("Identifikationsnummer",     
                      "Alter der Person in [Jahren]",
                      "Geschlecht der Person",
                      "Wohnregion",        
                      "Weiterempfehlungsbereitschaft"
   )
   
-  Label(d.set) <- '
+  bedrock::label(d.set,) <- '
         Für ein Möbelgeschäft wurde von einem Institut eine Kundenumfrage durchgeführt. Dabei wurden 
         in einer Stichprobe die Variablen <em>alter, geschlecht, wohnregion</em> erfragt. 
         Danach wurde die Frage:<br><br>
@@ -981,13 +981,13 @@ kunden <- function(){
 
 bip <- function(n = 20){
   
-  d.set <- umbra:::.PackageData("bip.xlsx")[1:n, ]
+  d.set <- .packageData("bip.xlsx")[1:n, ]
   
-  Labels(d.set) <- c("Land",     
+  bedrock::label(d.set, TRUE) <- c("Land",     
                      "Bruttoinlandprodukt 2023"
                     )
   
-  Label(d.set) <- gettextf('
+  bedrock::label(d.set,) <- gettextf('
         Das Bruttoinlandprodukt (BIP) misst den Gesamtwert aller 
         Waren und Dienstleistungen, die in einem Land in einem bestimmten 
         Zeitraum produziert werden. Der vorliegende Datensatz umfasst das BIP für die
@@ -1003,13 +1003,13 @@ bip <- function(n = 20){
 
 operation <- function(){
   
-  d.set <- umbra:::.PackageData("operation.xlsx")
+  d.set <- .packageData("operation.xlsx")
   
-  Labels(d.set) <- c("Verspätung vor dem Memo",     
+  bedrock::label(d.set, TRUE) <- c("Verspätung vor dem Memo",     
                      "Verspätung nach Versenden des Memo"
                      )
   
-  Label(d.set) <- "Der administrativen Leitung eines Spitals war aufgefallen, dass die erste nicht 
+  bedrock::label(d.set,) <- "Der administrativen Leitung eines Spitals war aufgefallen, dass die erste nicht 
       notfallmässige Operation, die täglich angesetzt war, häufig mit Verspätung begann. 
       Wenn sich indes der erste geplante Eingriff verzögerte, verzögerten sich auch 
       alle anderen für diesen Tag geplanten Eingriffe. Über &n& Tage wurde in der Folge
@@ -1030,15 +1030,15 @@ operation <- function(){
 
 vocabular <- function(){
   
-  d.set <- umbra:::.PackageData("vocabular.xlsx")
+  d.set <- .packageData("vocabular.xlsx")
   
-  Labels(d.set) <- c("Jahr der Prüfung",     
+  bedrock::label(d.set, TRUE) <- c("Jahr der Prüfung",     
                      "Geschlecht des Prüflings",
                      "Anzahl Schul-/Ausbildungsjahre", 
                      "Ergebnis im Wörtertest"
                      )
 
-  Label(d.set) <- "Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;
+  bedrock::label(d.set,) <- "Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;
                   enthält die Ergebnisse eines Wörter-Tests aus zwei verschiedenen Jahren.
                   Die Lehrer fragen sich, ob es Faktoren bei den Prüflingen gibt, die die 
                   Ergebnisse erklären können. Sie vermuten (oder hoffen zumindest), dass 
@@ -1075,14 +1075,14 @@ fitness <- function(n){
                                                   mean=65, sd=4.2)
   d.set$kgewicht <- round(d.set$kgewicht, 1)
     
-  Labels(d.set) <- c("Geschlecht",     
+  bedrock::label(d.set, TRUE) <- c("Geschlecht",     
                      "Alter",
                      "Trainingtyp", 
                      "Leistungszuwachs [in kg]",
                      "Körpergewicht [in kg]"
   )
   
-  Label(d.set) <- 'In einem achtwöchigen Experiment soll untersucht werden, 
+  bedrock::label(d.set,) <- 'In einem achtwöchigen Experiment soll untersucht werden, 
                   welche von drei Trainingsmethoden den grössten Leistungszuwachs 
                   im Fitnessstudio bewirkt. Dazu nehmen &n& gesunde, untrainierte 
                   Erwachsene im Alter von 18 bis 40 Jahren teil, die per Zufall auf 
@@ -1137,14 +1137,14 @@ alpvieh <- function(n=100){
   
   d.set <- data.frame(schlachtgewicht, fuetterung, alp, startgewicht, alter, geschlecht)
   
-  Labels(d.set) <- c("Schlachtgewicht in [kg]",
+  bedrock::label(d.set, TRUE) <- c("Schlachtgewicht in [kg]",
                      "die Fütterungsart während der Sömmerung",
                      "1 wenn das Kalb auf einer Alp gesömmert wurde",
                      "das Startgewicht zu Beginn der Sömmerung in [kg]",
                      "das Alter bei Beginn der Sömmerung (Monate)",
                      "das Geschlecht des Kalbes")
   
-  Label(d.set) <- as.html("In einer Untersuchung sollte analysiert werden, welche Einflussgrössen 
+  bedrock::label(d.set,) <- as.html("In einer Untersuchung sollte analysiert werden, welche Einflussgrössen 
   das Schlachtgewicht (Zielvariable) in [kg] von Kälbern nach der Sömmerung bestimmen. 
   Die Fütterungsart beschreibt, ob und in welchem Umfang während der Sömmerung 
   zugefüttert wurde. Es wird angenommen, dass zusätzliche Fütterung – insbesondere 
@@ -1164,13 +1164,13 @@ alpvieh <- function(n=100){
 
 akku <- function(){
   
-  d.set <- umbra:::.PackageData("akku.xlsx")
+  d.set <- .packageData("akku.xlsx")
   
-  Labels(d.set) <- c("Typ des Akkus",     
+  bedrock::label(d.set, TRUE) <- c("Typ des Akkus",     
                      "Anzahl Ladezyklen bis zum Ersatz" 
   )
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
     Ein Batterie-Hersteller bietet 2 Typen von Akkus A und B an und 
     verspricht in der Werbung, dass beide Akkutypen gleich viele Ladezyklen
     vertragen, bevor sie ersetzt werden müssen.
@@ -1206,12 +1206,12 @@ sonnenblumen <- function(n=60) {
   # Zusammenführen
   daten <- data.frame(dünger, sorte, sonne, höhe)
   
-  Labels(daten) <- c("Düngertyp", 
+  bedrock::label(daten, TRUE) <- c("Düngertyp", 
                      "Sonnenblumensorte",
                      "Intensität der Sonneneinstrahlung",
                      "gemessene Pflanzenhöhe nach definierter Wachstumsperiode")
 
-  Label(daten) <- "Führt die Verwendung von Dünger A im Vergleich zu Dünger B 
+  bedrock::label(daten) <- "Führt die Verwendung von Dünger A im Vergleich zu Dünger B 
     zu einem höheren Wachstum (Pflanzenhöhe) bei Sonnenblumen, unter 
     Berücksichtigung verschiedener Sorten und unterschiedlicher 
     Sonneneinstrahlung?<br>
@@ -1225,13 +1225,13 @@ sonnenblumen <- function(n=60) {
 
 verzögerung <- function(){
   
-  d.set <- umbra:::.PackageData("verzögerung.xlsx")
+  d.set <- .packageData("verzögerung.xlsx")
   
-  Labels(d.set) <- c("Messung vor dem Memo",     
+  bedrock::label(d.set, TRUE) <- c("Messung vor dem Memo",     
                      "Messung nach dem Memo" 
                      )
   
-  Label(d.set) <- '
+  bedrock::label(d.set,) <- '
       In einem Speditionsbetrieb fiel dem Disponenten auf, dass die erste
       Lieferung häufig mit Verspätung erfolgte.
       Wenn sich die erste Lieferung verzögerte, verzögerten sich auch
@@ -1256,14 +1256,14 @@ verzögerung <- function(){
 
 bike <- function(){
   
-  d.set <- umbra:::.PackageData("bike.xlsx")
+  d.set <- .packageData("bike.xlsx")
   
-  Labels(d.set) <- c("Datum","Wochentag","Monat","Ferientag","Jahreszeit",
+  bedrock::label(d.set, TRUE) <- c("Datum","Wochentag","Monat","Ferientag","Jahreszeit",
                      "Wetter","Temperatur in °C","gefühlte Temperatur in °C",
                      "Luftfeuchtigkeit in %","Windgeschwindigkeit",
                      "Anzahl Vermietungen")
 
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
           Der Verleih von Fahrrädern hängt stark mit dem Wetter und den saisonalen Gegebenheiten zusammen. 
           Typischerweise beeinflussen Wetterbedingungen, Niederschlag, Wochentag, 
           Jahreszeit, Tageszeit usw. die Anzahl Vermietungen.
@@ -1279,12 +1279,12 @@ bike <- function(){
 
 arbeitsweg <- function(){
   
-  d.set <- umbra:::.PackageData("arbeitsweg.xlsx")
+  d.set <- .packageData("arbeitsweg.xlsx")
   
-  Labels(d.set) <- c("ID der befragten Person", "Agglomeration (<em>ZH, BE, BS</em>)", 
+  bedrock::label(d.set, TRUE) <- c("ID der befragten Person", "Agglomeration (<em>ZH, BE, BS</em>)", 
                      "Transportmittel", "Benötigte Zeit für den Arbeitsweg")
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
           Für eine Mobilitätsuntersuchung zuhanden der Verkehrskommission sollte die Dauer
           des Arbeitswegs für unterschiedliche Agglomerationen und Verkehrsmittel ermittelt werden.
           "
@@ -1367,11 +1367,11 @@ reisekunden <- function(n = 500) {
   )
   
   
-  Label(daten) <- "Ein Reisebüro will die Unterschiede in den Reisepräferenzen 
+  bedrock::label(daten, TRUE) <- "Ein Reisebüro will die Unterschiede in den Reisepräferenzen 
           nach Geschlecht und Altersgruppe abbilden, wie sie typischerweise 
           in Marktanalysen beobachtet werden."
   
-  Labels(daten) <- c("die ID des Kunden", "das Alter", "die Zielgruppe", "das letzte Reiseziel",
+  bedrock::label(daten) <- c("die ID des Kunden", "das Alter", "die Zielgruppe", "das letzte Reiseziel",
                      "die geäusserte Motivation")
   
   return(daten)
@@ -1381,12 +1381,12 @@ reisekunden <- function(n = 500) {
 
 kreisel <- function(){
   
-  d.set <- umbra:::.PackageData("kreisel.xlsx")
+  d.set <- .packageData("kreisel.xlsx")
   
-  Labels(d.set) <- c("Staulänge ohne Verkehrsleitung", 
+  bedrock::label(d.set, TRUE) <- c("Staulänge ohne Verkehrsleitung", 
                      "Staulänge mit Verkehrsleitung")
   
-  Label(d.set) <- "
+  bedrock::label(d.set,) <- "
       Am Kreisel in Fällanden staut sich der Verkehr an jedem Morgen zuverlässig. 
       Die Gemeinde versuchte als Ansatz, die Wartezeiten für die Autofahrer 
       durch den Einsatz von Verkehrskadetten zu verkürzen. 

@@ -27,8 +27,8 @@ RndPairs <- function(n, r, rdist1 = rnorm(n=n, mean = 0, sd = 1),
       propx <- propy <- cumsum(c(0, prop))
     }
 
-    res$x <- CutQ(res$x, breaks = quantile(res$x, probs = propx))
-    res$y <- CutQ(res$y, breaks = quantile(res$y, probs = propy))
+    res$x <- cutQ(res$x, breaks = quantile(res$x, probs = propx))
+    res$y <- cutQ(res$y, breaks = quantile(res$y, probs = propy))
 
   }
   
@@ -51,7 +51,7 @@ TwoSamp <- function(n, colnames, glevels=NULL, DIST, long=TRUE){
     res <- as.data.frame(sapply(seq(n), function(i) DIST[[i]](n[i])))
   }
   
-  return(SetNames(res, colnames=colnames))
+  return(setNamesX(res, colnames=colnames))
   
 }
 

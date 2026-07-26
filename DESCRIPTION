@@ -1,18 +1,18 @@
 Package: umbra
 Type: Package
 Title: Emulate Date for Simulation Purposes
-Version: 0.0.901
+Version: 0.0.902
 Authors@R: c(person("Andri", "Signorell", email = "andri@signorell.net", role = c("aut", "cre")))
 Maintainer: Andri Signorell <andri@signorell.net>
 Description: For exercises or tests we often need some toy data.
     umbra contains several functions to create such data.
-Depends: base, stats, R (>= 4.0.0), DescTools
-Imports: readxl
+Depends: base, stats, R (>= 4.0.0)
+Imports: readxl, DescToolsX, bedrock, pharos
 License: GPL (>= 2)
 LazyData: yes
 URL: https://andrisignorell.github.io/umbra/,
             https://github.com/AndriSignorell/umbra/
 BugReports: https://github.com/AndriSignorell/umbra/issues
-RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
-Encoding:UTF-8
+Encoding: UTF-8
+Config/roxygen2/version: 8.0.0

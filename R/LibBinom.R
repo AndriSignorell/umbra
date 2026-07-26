@@ -80,8 +80,26 @@ LibBinomial <- list(
     prob = c(0.03, 0.07),  # probability from ... to
     n = c(12, 15)*7
     
+  ),
+
+  tennis = list(
+    PRE_TXT = "\n
+      Ein Tennisspieler schätzt, dass er bei jedem Aufschlag mit einer
+      Wahrscheinlichkeit von p&nbsp;=&nbsp;&p& ein Ass erzielt.
+      In den verbleibenden Partien des Turniers rechnet er mit insgesamt
+      n&nbsp;=&nbsp;&n&&nbsp; Aufschlägen.
+      <br><br>
+      Wie gross ist die Wahrscheinlichkeit, dass der Tennisspieler bei diesen
+      Aufschlägen ... <br><br>
+    ",
+    prob_txt="Asse erzielt.",
+    quant_txt = "", 
+    prob = c(0.08, 0.11),  # probability from ... to
+    n = c(12, 15)*7
+    
   )
 
+  
   
 )
 

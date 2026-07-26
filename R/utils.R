@@ -1,6 +1,6 @@
 
 
-.PackageData <- function(filename, stringsAsFactors = FALSE) {
+.packageData <- function(filename, stringsAsFactors = FALSE) {
   
   data.frame(readxl::read_xlsx(
     gettextf("%s/%s", 
