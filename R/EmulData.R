@@ -9,6 +9,7 @@
 
 # Schneehöhe ****************************************
 
+#' @export
 schnee <- function(n=507) {
   
   # set.seed(81)
@@ -48,6 +49,7 @@ schnee <- function(n=507) {
 
 # Alzheimer ******************************
 
+#' @export
 alzheimer <- function(n=554) {
   
   # alzheimer()
@@ -77,6 +79,7 @@ alzheimer <- function(n=554) {
 
 
 
+#' @export
 rinder <- function(n=554) {
   
   # Schlachtalter:  18-24 Monate
@@ -120,6 +123,7 @@ rinder <- function(n=554) {
 
 # Miete *******************************************
 
+#' @export
 miete <- function() {
   
   # miete()
@@ -147,6 +151,7 @@ miete <- function() {
 
 # Kalorien *******************************************
 
+#' @export
 kalorien <- function() {
   
   # kalorien()
@@ -170,6 +175,7 @@ kalorien <- function() {
 
 # Schokolade **********************************************************
 
+#' @export
 choco <- function(n=300) {
   
   d.set <- data.frame(id=sample(1000:9999, n), 
@@ -208,6 +214,7 @@ choco <- function(n=300) {
 
 # Tierheim  ******************************************
 
+#' @export
 tierklinik <- function(n=150) {
   
   d.set <- data.frame(id=sample(1000:9999, n), 
@@ -246,6 +253,7 @@ tierklinik <- function(n=150) {
 
 # Social Media
 
+#' @export
 socialmedia <- function(n = 1224){
   
   d.set <- data.frame(id=sample(1000:9999, n), 
@@ -282,6 +290,7 @@ socialmedia <- function(n = 1224){
 
 # Smoke *************************************
 
+#' @export
 smoke <- function(vars=c("educ","cigpric","white","age","income","cigs","restaurn","cigcat")) {
   
   d.set <- .packageData("smoke.xlsx")
@@ -314,6 +323,7 @@ smoke <- function(vars=c("educ","cigpric","white","age","income","cigs","restaur
 # Eier ******************************************************
 
 
+#' @export
 eier <- function(vars=c("gewicht","alter","rasse","futter","farbe")){
   
   d.set <- .packageData("eier.xlsx", stringsAsFactors = TRUE)
@@ -345,6 +355,7 @@ eier <- function(vars=c("gewicht","alter","rasse","futter","farbe")){
 
 # Gämsen
 
+#' @export
 gams <- function() {
   
   d.set <- .packageData("gemsen.xlsx", stringsAsFactors = TRUE)
@@ -372,6 +383,7 @@ gams <- function() {
 
 
 # Hotdog
+#' @export
 hotdog <- function(){
   
   # get base table
@@ -400,6 +412,7 @@ hotdog <- function(){
 
 
 # Vegetarische Ernährung
+#' @export
 vegi <- function(){
   
   # get base table
@@ -430,6 +443,7 @@ vegi <- function(){
 
 
 
+#' @export
 lohn <- function() {
   
   # use for: Klasseneinteilung, LinReg
@@ -449,6 +463,7 @@ lohn <- function() {
 
 
 # Aeschen
+#' @export
 aeschen <- function(mu =c(1, 0.8), s=c(0.19, 0.22)){
   
   # get base dataset
@@ -473,6 +488,7 @@ aeschen <- function(mu =c(1, 0.8), s=c(0.19, 0.22)){
 
 # Lineare Regression - Bluthochdruck 
 
+#' @export
 blood <- function() {
   
   d.set <- rbind(
@@ -509,6 +525,7 @@ blood <- function() {
 
 # lineare Regression
 
+#' @export
 dose <- function(){
   
   d.set <- data.frame(proben_id=sample(1000:9999, n <- 507),
@@ -540,6 +557,7 @@ dose <- function(){
 
 
 
+#' @export
 schulnote <- function(){
   
     d.dat <- within(
@@ -580,6 +598,7 @@ schulnote <- function(){
 
 
 
+#' @export
 einkauf <- function(n = 427){
   
   d.dat <- within(
@@ -615,6 +634,7 @@ einkauf <- function(n = 427){
 
 
 
+#' @export
 kredit <- function(n){
   
   d.dat <- within(
@@ -653,6 +673,7 @@ kredit <- function(n){
 
 
 # Retouren 
+#' @export
 retouren <- function(n=1248, p=0.016, name_x){
   
   hersteller <- function(n, p, name_x){
@@ -697,6 +718,7 @@ retouren <- function(n=1248, p=0.016, name_x){
 
 
 
+#' @export
 birthweight <- function() {
 
   d.set <- .packageData("birthweight.xlsx")
@@ -724,6 +746,7 @@ birthweight <- function() {
 
 
 
+#' @export
 sports <- function() {
   
   d.set <- .packageData("sports.xlsx")
@@ -751,6 +774,7 @@ sports <- function() {
 
 
 
+#' @export
 haushaltschaden <- function(n, mu_small=1000, sd_small=500, 
                             scale=2500, shape=2.5){
   # example:
@@ -788,6 +812,7 @@ haushaltschaden <- function(n, mu_small=1000, sd_small=500,
 
 
 
+#' @export
 autismus <- function(noise=FALSE){
   
   # Erstellen der Kontingenztabelle
@@ -817,6 +842,7 @@ autismus <- function(noise=FALSE){
 
 
 
+#' @export
 knochendichte <- function() {
   
   d.set <- .packageData("knochendichte.xlsx")
@@ -840,6 +866,7 @@ knochendichte <- function() {
 }
 
 
+#' @export
 krankenversicherer <- function(){
 
   d.set <- .packageData("krankenversicherer.xlsx")
@@ -870,6 +897,7 @@ krankenversicherer <- function(){
 }
 
 
+#' @export
 bankhr <- function(){
   
   d.set <- .packageData("bankhr.xlsx")
@@ -893,6 +921,7 @@ bankhr <- function(){
 }
 
 
+#' @export
 detailhändler <- function(){
   
   d.set <- .packageData("detailhändler.xlsx")
@@ -932,6 +961,7 @@ comcorp <- function(){
 }
 
 
+#' @export
 skigebiet <- function(){
   
   d.set <- .packageData("skigebiet.xlsx")
@@ -954,6 +984,7 @@ skigebiet <- function(){
 
 
 
+#' @export
 kunden <- function(){
 
   d.set <- .packageData("kunden.xlsx")
@@ -979,6 +1010,7 @@ kunden <- function(){
 
 
 
+#' @export
 bip <- function(n = 20){
   
   d.set <- .packageData("bip.xlsx")[1:n, ]
@@ -1001,6 +1033,7 @@ bip <- function(n = 20){
 
 
 
+#' @export
 operation <- function(){
   
   d.set <- .packageData("operation.xlsx")
@@ -1028,6 +1061,7 @@ operation <- function(){
 
 
 
+#' @export
 vocabular <- function(){
   
   d.set <- .packageData("vocabular.xlsx")
@@ -1055,6 +1089,7 @@ vocabular <- function(){
 
 
 
+#' @export
 fitness <- function(n){
 
   d.set <- within(
@@ -1107,6 +1142,7 @@ fitness <- function(n){
 }
 
 
+#' @export
 alpvieh <- function(n=100){
   
   set.seed(42)
@@ -1162,6 +1198,7 @@ alpvieh <- function(n=100){
 
 
 
+#' @export
 akku <- function(){
   
   d.set <- .packageData("akku.xlsx")
@@ -1185,14 +1222,15 @@ akku <- function(){
 
 
 
+#' @export
 sonnenblumen <- function(n=60) {
   
   dünger <- rep(c("A", "B"), each = n/2)
-  sorte <- rep(c("Classic", "Giant", "Mini"), length.out = n)
+  sorte <- rep(c("TeddyBear", "MongolianGiant", "VelvetQueen"), length.out = n)
   sonne <- sample(c("hoch", "mittel", "gering"), size = n, replace = TRUE)
   
   # Baseline für Sorten (in cm)
-  sorten_effekt <- c(Classic = 150, Giant = 180, Mini = 120)
+  sorten_effekt <- c(TeddyBear = 150, MongolianGiant = 180, VelvetQueen = 120)
   
   # Sonneneinstrahlungseffekt
   sonnen_effekt <- c(hoch = 20, mittel = 10, gering = 0)
@@ -1214,8 +1252,7 @@ sonnenblumen <- function(n=60) {
   bedrock::label(daten) <- "Führt die Verwendung von Dünger A im Vergleich zu Dünger B 
     zu einem höheren Wachstum (Pflanzenhöhe) bei Sonnenblumen, unter 
     Berücksichtigung verschiedener Sorten und unterschiedlicher 
-    Sonneneinstrahlung?<br>
-    Die Daten finden sich in &nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;."
+    Sonneneinstrahlung?"
   
   return(daten)
   
@@ -1223,6 +1260,7 @@ sonnenblumen <- function(n=60) {
 
 
 
+#' @export
 verzögerung <- function(){
   
   d.set <- .packageData("verzögerung.xlsx")
@@ -1254,6 +1292,7 @@ verzögerung <- function(){
 
 
 
+#' @export
 bike <- function(){
   
   d.set <- .packageData("bike.xlsx")
@@ -1277,6 +1316,7 @@ bike <- function(){
 
 
 
+#' @export
 arbeitsweg <- function(){
   
   d.set <- .packageData("arbeitsweg.xlsx")
@@ -1298,6 +1338,7 @@ arbeitsweg <- function(){
 # ---------------------------------------------------
 # Funktion zur zufälligen Kundengenerierung
 # ---------------------------------------------------
+#' @export
 reisekunden <- function(n = 500) {
     
   # ---------------------------------------------------
@@ -1379,6 +1420,7 @@ reisekunden <- function(n = 500) {
 }
 
 
+#' @export
 kreisel <- function(){
   
   d.set <- .packageData("kreisel.xlsx")
