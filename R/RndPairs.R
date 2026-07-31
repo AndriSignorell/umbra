@@ -9,7 +9,8 @@
 # }
 
 
-RndPairs <- function(n, r, rdist1 = rnorm(n=n, mean = 0, sd = 1), 
+#' @export
+rndPairs <- function(n, r, rdist1 = rnorm(n=n, mean = 0, sd = 1), 
                      rdist2 = rnorm(n=n, mean = 0, sd = 1), prop=NULL) {
   
   # create correlated random pairs

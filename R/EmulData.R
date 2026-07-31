@@ -220,7 +220,7 @@ tierklinik <- function(n=150) {
   d.set <- data.frame(id=sample(1000:9999, n), 
                       alter = sample(1:8, n, replace=TRUE),
                       # produce associated ordinal variables
-                      RndPairs(n = n, r=0.65, prop = list(c(.3, .15, .35, .20), 
+                      rndPairs(n = n, r=0.65, prop = list(c(.3, .15, .35, .20), 
                                                           c(.35, .45, .2))))
   
   levels(d.set$x) <- c("Deutscher Schäferhund", "Terrier", 
@@ -248,42 +248,6 @@ tierklinik <- function(n=150) {
   
 }
 
-
-
-
-# Social Media
-
-#' @export
-socialmedia <- function(n = 1224){
-  
-  d.set <- data.frame(id=sample(1000:9999, n), 
-                      region=sample(c("land","stadt"), n, replace=TRUE, prob=c(0.37, .73)),
-                      alter = sample(16:60, n, replace=TRUE),
-                      # produce associated ordinal variables
-                      RndPairs(n = n, r=0.8, prop = list(c(.3, .15, .3, .25), 
-                                                         c(.45, .55))))
-  levels(d.set$x) <- c("FaceBook", "LinkedIn", "WhatsApp", "Instagram")
-  levels(d.set$y) <- c("m","w")
-  colnames(d.set)[4:5] <- c("app", "geschlecht")
-  d.set <- d.set[,c("id","geschlecht","alter","region","app")]
-  
-  bedrock::label(d.set, TRUE) <- c(
-    "Identifikationsnummer",
-    "Geschlecht der Person",
-    "Alter",
-    "Wohnregion (stadt/land)",
-    "Am häufigsten verwendete Social Media Applikation")    
-  
-  
-  bedrock::label(d.set,) <- "Der Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;
-        enthält die Ergebnisse einer Studie, 
-        die untersuchen sollte, welche Social Media Applikationen von 
-        unterschiedlichen Zielgruppen 
-        genutzt werden."
-  
-  return(d.set)
-  
-}
 
 
 
@@ -1142,59 +1106,6 @@ fitness <- function(n){
 }
 
 
-#' @export
-alpvieh <- function(n=100){
-  
-  set.seed(42)
-  
-  # n <- 100
-  fuetterung <- factor(sample(c("keine", "heu", "kraftfutter"), n, replace = TRUE),
-                       levels=c("keine", "heu", "kraftfutter"))
-  alp <- rbinom(n, 1, 0.6)
-  startgewicht <- round(rnorm(n, mean = 125, sd = 6), 1)
-  alter <- round(rnorm(n, mean = 6, sd = 0.5), 1)
-  geschlecht <- factor(c("m","w")[rbinom(n, 1, 0.5)+1], levels=c("m","w"))
-
-  # Regressionsstruktur (wahre Effekte)
-  beta0 <- 50
-  beta_fuet <- c(keine = 0, Heu = 10, Kraftfutter = 25)
-  beta_alp <- 5
-  beta_start <- 0.6
-  beta_alter <- 2
-  
-  schlachtgewicht <- round(
-      beta0 +
-      beta_fuet[fuetterung] +
-      beta_alp * alp +
-      beta_start * startgewicht +
-      beta_alter * alter +
-      rnorm(n, 0, 5), 
-    1)
-  
-  d.set <- data.frame(schlachtgewicht, fuetterung, alp, startgewicht, alter, geschlecht)
-  
-  bedrock::label(d.set, TRUE) <- c("Schlachtgewicht in [kg]",
-                     "die Fütterungsart während der Sömmerung",
-                     "1 wenn das Kalb auf einer Alp gesömmert wurde",
-                     "das Startgewicht zu Beginn der Sömmerung in [kg]",
-                     "das Alter bei Beginn der Sömmerung (Monate)",
-                     "das Geschlecht des Kalbes")
-  
-  bedrock::label(d.set,) <- as.html("In einer Untersuchung sollte analysiert werden, welche Einflussgrössen 
-  das Schlachtgewicht (Zielvariable) in [kg] von Kälbern nach der Sömmerung bestimmen. 
-  Die Fütterungsart beschreibt, ob und in welchem Umfang während der Sömmerung 
-  zugefüttert wurde. Es wird angenommen, dass zusätzliche Fütterung – insbesondere 
-  mit Kraftfutter – zu einem höheren Schlachtgewicht führen könnte. Auch ein 
-  Alpaufenthalt könnte sich positiv auswirken, da Kälber dort oft bessere 
-  Weidebedingungen vorfinden. Startgewicht und Alter dienen als kontinuierliche Grössen, 
-  die das Wachstumspotenzial der Tiere abbilden sollen.<br>
-  Folgende potenzielle erklärende Variablen liegen vor 
-  (Datensatz&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;):
-  <br><br> &vartab&<br><br>                          ")
-
-  return(d.set)
-}
-
 
 
 
@@ -1207,14 +1118,12 @@ akku <- function(){
                      "Anzahl Ladezyklen bis zum Ersatz" 
   )
   
-  bedrock::label(d.set,) <- "
-    Ein Batterie-Hersteller bietet 2 Typen von Akkus A und B an und 
-    verspricht in der Werbung, dass beide Akkutypen gleich viele Ladezyklen
-    vertragen, bevor sie ersetzt werden müssen.
+  bedrock::label(d.set,) <- "Ein Batterie-Hersteller bietet 2 Typen von 
+    Akkus A und B an und verspricht in der Werbung, dass beide Akkutypen 
+    gleich viele Ladezyklen vertragen, bevor sie ersetzt werden müssen.
     Eine Konsumentenorganisation will das überprüfen und bildet eine Stichprobe
     mit Typ-A und Typ-B Akkus. Die Akkus werden soviele Male geladen, bis
-    die Kapazität nicht mehr über einen vorher bestimmten Schwellwert kommt.<br>
-    Die Daten finden sich in &nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;."
+    die Kapazität nicht mehr über einen vorher bestimmten Schwellwert kommt."
   
   return(d.set)
   
