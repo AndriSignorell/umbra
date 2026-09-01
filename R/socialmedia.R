@@ -41,7 +41,7 @@ socialmedia <- function(n = 1224){
     "Geschlecht der Person",
     "Alter",
     "Wohnregion (stadt/land)",
-    "Am häufigsten verwendete Social Media Applikation",
+    "Am h\u00e4ufigsten verwendete Social Media Applikation",
     "Generation",
     "Online Zeit")    
   

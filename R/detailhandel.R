@@ -13,17 +13,17 @@
 #' @concept 1.4 Kennzahlen
 #' @concept 1.6 Konzentration
 #' @export
-detailhändler <- function(){
+detailhandel <- function(){
   
-  d.set <- .packageData("detailhändler.xlsx")
+  d.set <- .packageData("detailhandel.xlsx")
   
   bedrock::label(d.set, TRUE) <- c("Identifikationsnummer des Unternehmens", 
                                    "Name des Unternehmens",
-                                   "geschätzter Jahresumsatz in [Mio CHF]"
+                                   "gesch\u00e4tzter Jahresumsatz in [Mio CHF]"
   )
   
   bedrock::label(d.set,) <- "
-              Die Liste enthält den Jahresumsatz von &n& auf dem Schweizer Markt 
+              Die Liste enth\u00e4lt den Jahresumsatz von &n& auf dem Schweizer Markt 
               aktiven Unternehmen aus dem Detailhandel.<br>
               "
   

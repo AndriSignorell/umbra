@@ -13,10 +13,10 @@ schnee(n = 507)
 ein gelabelter \code{data.frame} mit folgenden Variablen:
 \itemize{
 \item \code{proben_id}: Identifikationsnummer der Schneeprobe.
-\item \code{meereshöhe}: Höhe des Messpunkts über Meer [m].
+\item \code{meereshoehe}: Höhe des Messpunkts über Meer [m].
 \item \code{hanglage}: Ausrichtung des Hangs.
 \item \code{kanton}: Kanton des Messpunkts.
-\item \code{schneehöhe}: Maximal gemessene Schneehöhe während der Messperiode \link{cm}.
+\item \code{schneehoehe}: Maximal gemessene Schneehöhe während der Messperiode \link{cm}.
 }
 }
 \description{

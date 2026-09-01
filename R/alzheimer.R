@@ -60,16 +60,16 @@ alzheimer <- function(n = 554) {
     "In einer Alzheimerstudie werden die Erinnerungsleistungen von",
     "Alzheimer-Patienten der Gruppe 'case' mit jenen von gesunden",
     "Kontrollpersonen der Gruppe 'control' verglichen. Den Teilnehmenden",
-    "werden 30 Gegenstände vorgelegt, die sie anschliessend aus dem",
-    "Gedächtnis aufschreiben sollen."
+    "werden 30 Gegenst\u00e4nde vorgelegt, die sie anschliessend aus dem",
+    "Ged\u00e4chtnis aufschreiben sollen."
   ),
   
   variables = c(
     id = "Identifikationsnummer der teilnehmenden Person",
     geschlecht = "Geschlecht der teilnehmenden Person",
     alter = "Alter der teilnehmenden Person \\[Jahre\\]",
-    gruppe = "Studiengruppe mit den Ausprägungen 'control' und 'case'",
-    items = "Anzahl erinnerter Begriffe im Gedächtnistest"
+    gruppe = "Studiengruppe mit den Auspr\u00e4gungen 'control' und 'case'",
+    items = "Anzahl erinnerter Begriffe im Ged\u00e4chtnistest"
   )
 )
 
@@ -89,7 +89,7 @@ alzheimer <- function(n = 554) {
     levels = c("m", "w")
   )
   
-  ## Alter: linksschief mit einer Häufung bei höheren Alterswerten
+  ## Alter: linksschief mit einer H\u00e4ufung bei h\u00f6heren Alterswerten
   alter <- round(
     bedrock::rBetaShape(
       n,

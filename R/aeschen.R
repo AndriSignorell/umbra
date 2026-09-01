@@ -22,19 +22,24 @@
 aeschen <- function(mu =c(1, 0.8), s=c(0.19, 0.22)){
   
   # get base dataset
-  d.set <- TwoSamp(n=c(101, 123), colnames=c("gewicht", "jahr"),
-                   glevels=c("2023","2024"),
-                   DIST=c(function(n) round(rnorm(n, mean=mu[1], sd=s[1]), 3),
-                          function(n) round(rnorm(n, mean=mu[2], sd=s[2]), 3)))[, c(2,1)]
-  d.set$jahr <- num(d.set$jahr)
+  d.set <- twoSamp(
+    n = c(101, 123),
+    rdist = list(
+      function(n) round(rnorm(n, mean = mu[1], sd = s[1]), 3),
+      function(n) round(rnorm(n, mean = mu[2], sd = s[2]), 3)
+    ),
+    groups = 2023:2024,
+    valueName = "gewicht",
+    groupName = "jahr"
+  )
   
-  bedrock::label(d.set,) <- "Fischer im Bodensee äusserten den Verdacht, dass das Gewicht der Aeschen 
+  bedrock::label(d.set,) <- "Fischer im Bodensee \u00e4usserten den Verdacht, dass das Gewicht der Aeschen 
       im 2024 deutlich kleiner sei, als im vorherigen Jahr (2023). Dieses war speziell
-      warm gewesen und man vermutete, dass vor allem ältere (und schwerere) Fische besonders unter 
-      dem in wärmerem Wasser verringerten Sauerstoffgehalt gelitten hätten und allenfalls vorzeitig 
-      eingegangen sein könnten.<br>
-      Der Datensatz&nbsp;&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;&nbsp;enthält
-      das Gewicht der Fische für je eine Stichprobe aus den Jahren 2023 und 2024."
+      warm gewesen und man vermutete, dass vor allem \u00e4ltere (und schwerere) Fische besonders unter 
+      dem in w\u00e4rmerem Wasser verringerten Sauerstoffgehalt gelitten h\u00e4tten und allenfalls vorzeitig 
+      eingegangen sein k\u00f6nnten.<br>
+      Der Datensatz&nbsp;&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;&nbsp;enth\u00e4lt
+      das Gewicht der Fische f\u00fcr je eine Stichprobe aus den Jahren 2023 und 2024."
   
   return(d.set)
   

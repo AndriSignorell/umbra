@@ -1,7 +1,7 @@
 Package: umbra
 Type: Package
 Title: Emulate Date for Simulation Purposes
-Version: 0.0.904
+Version: 0.0.905
 Authors@R: c(person("Andri", "Signorell", email = "andri@signorell.net", role = c("aut", "cre")))
 Maintainer: Andri Signorell <andri@signorell.net>
 Description: For exercises or tests we often need some toy data.

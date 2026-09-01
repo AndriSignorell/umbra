@@ -30,18 +30,18 @@ alpvieh <- function(n=100){
   d.set <- data.frame(schlachtgewicht, fuetterung, alp, startgewicht, alter, geschlecht)
   
   bedrock::label(d.set, TRUE) <- c("Schlachtgewicht in [kg]",
-                                   "die Fütterungsart während der Sömmerung",
-                                   "1 wenn das Kalb auf einer Alp gesömmert wurde",
-                                   "das Startgewicht zu Beginn der Sömmerung in [kg]",
-                                   "das Alter bei Beginn der Sömmerung (Monate)",
+                                   "die F\u00fctterungsart w\u00e4hrend der S\u00f6mmerung",
+                                   "1 wenn das Kalb auf einer Alp ges\u00f6mmert wurde",
+                                   "das Startgewicht zu Beginn der S\u00f6mmerung in [kg]",
+                                   "das Alter bei Beginn der S\u00f6mmerung (Monate)",
                                    "das Geschlecht des Kalbes")
   
-  bedrock::label(d.set,) <- as.html("In einer Untersuchung sollte analysiert werden, welche Einflussgrössen 
-  das Schlachtgewicht (Zielvariable) in [kg] von Kälbern nach der Sömmerung bestimmen. 
-  Die Fütterungsart beschreibt, ob und in welchem Umfang während der Sömmerung 
-  zugefüttert wurde. Es wird angenommen, dass zusätzliche Fütterung – insbesondere 
-  mit Kraftfutter – zu einem höheren Schlachtgewicht führen könnte. Auch ein 
-  Alpaufenthalt könnte sich positiv auswirken, da Kälber dort oft bessere 
+  bedrock::label(d.set,) <- as.html("In einer Untersuchung sollte analysiert werden, welche Einflussgr\u00f6ssen 
+  das Schlachtgewicht (Zielvariable) in [kg] von K\u00e4lbern nach der S\u00f6mmerung bestimmen. 
+  Die F\u00fctterungsart beschreibt, ob und in welchem Umfang w\u00e4hrend der S\u00f6mmerung 
+  zugef\u00fcttert wurde. Es wird angenommen, dass zus\u00e4tzliche F\u00fctterung - insbesondere 
+  mit Kraftfutter - zu einem h\u00f6heren Schlachtgewicht f\u00fchren k\u00f6nnte. Auch ein 
+  Alpaufenthalt k\u00f6nnte sich positiv auswirken, da K\u00e4lber dort oft bessere 
   Weidebedingungen vorfinden.")
   
   return(d.set)

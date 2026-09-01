@@ -23,24 +23,24 @@
 reisekunden <- function(n = 500) {
   
   # ---------------------------------------------------
-  # 🧳 Simulation eines Kundendatensatzes für ein Reisebüro
+  # \U0001f9f3 Simulation eines Kundendatensatzes f\u00fcr ein Reiseb\u00fcro
   # ---------------------------------------------------
   
-  set.seed(123)  # für Reproduzierbarkeit
+  set.seed(123)  # f\u00fcr Reproduzierbarkeit
   
   # Beispielhafte Zielgruppen mit Wahrscheinlichkeiten
-  zielgruppen <- c("Frauen", "Männer", "Jüngere (<30)", "Mittlere (30–50)", "Ältere (60+)")
+  zielgruppen <- c("Frauen", "M\u00e4nner", "J\u00fcngere (<30)", "Mittlere (30\u201350)", "\u00c4ltere (60+)")
   p_zielgruppen <- c(0.25, 0.25, 0.20, 0.20, 0.10)
   
   # Basis-Tabelle mit typischen Reisedestinationen und Motivationen
   reiseideen <- data.frame(
     Zielgruppe = c(
-      "Frauen", "Frauen", "Männer", "Männer",
-      "Jüngere (<30)", "Mittlere (30–50)", "Ältere (60+)"
+      "Frauen", "Frauen", "M\u00e4nner", "M\u00e4nner",
+      "J\u00fcngere (<30)", "Mittlere (30\u201350)", "\u00c4ltere (60+)"
     ),
     Reiseziel = c(
-      "Bali", "Südfrankreich", "Graubünden", "Kanada",
-      "Ibiza", "Südafrika", "Donaukreuzfahrt"
+      "Bali", "S\u00fcdfrankreich", "Graub\u00fcnden", "Kanada",
+      "Ibiza", "S\u00fcdafrika", "Donaukreuzfahrt"
     ),
     Motivation = c(
       "Wellness & Natur", "Erholung & Kulinarik",
@@ -52,19 +52,19 @@ reisekunden <- function(n = 500) {
   )
   
   
-  # Zufällige Zielgruppe pro Kunde
+  # Zuf\u00e4llige Zielgruppe pro Kunde
   gruppe <- sample(zielgruppen, n, replace = TRUE, prob = p_zielgruppen)
   
   # Geschlecht aus Zielgruppe ableiten
   geschlecht <- ifelse(gruppe == "Frauen", "weiblich",
-                       ifelse(gruppe == "Männer", "männlich",
-                              sample(c("weiblich", "männlich"), n, replace = TRUE)))
+                       ifelse(gruppe == "M\u00e4nner", "m\u00e4nnlich",
+                              sample(c("weiblich", "m\u00e4nnlich"), n, replace = TRUE)))
   
   # Alter je nach Gruppe simulieren
   alter <- sapply(gruppe, function(g) {
-    if (g == "Jüngere (<30)") rnorm(1, 25, 3)
-    else if (g == "Mittlere (30–50)") rnorm(1, 40, 5)
-    else if (g == "Ältere (60+)") rnorm(1, 68, 4)
+    if (g == "J\u00fcngere (<30)") rnorm(1, 25, 3)
+    else if (g == "Mittlere (30\u201350)") rnorm(1, 40, 5)
+    else if (g == "\u00c4ltere (60+)") rnorm(1, 68, 4)
     else rnorm(1, 45, 10)
   })
   
@@ -77,7 +77,7 @@ reisekunden <- function(n = 500) {
     sample(reiseideen$Motivation[reiseideen$Zielgruppe == g], 1)
   })
   
-  # Zusammenführen
+  # Zusammenf\u00fchren
   daten <- data.frame(
     KundenID = 1:n,
     Geschlecht = geschlecht,
@@ -89,12 +89,12 @@ reisekunden <- function(n = 500) {
   )
   
   
-  bedrock::label(daten, TRUE) <- "Ein Reisebüro will die Unterschiede in den Reisepräferenzen 
+  bedrock::label(daten, TRUE) <- "Ein Reiseb\u00fcro will die Unterschiede in den Reisepr\u00e4ferenzen 
           nach Geschlecht und Altersgruppe abbilden, wie sie typischerweise 
           in Marktanalysen beobachtet werden."
   
   bedrock::label(daten) <- c("die ID des Kunden", "das Alter", "die Zielgruppe", "das letzte Reiseziel",
-                             "die geäusserte Motivation")
+                             "die ge\u00e4usserte Motivation")
   
   return(daten)
   
