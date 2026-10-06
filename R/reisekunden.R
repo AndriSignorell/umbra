@@ -26,8 +26,6 @@ reisekunden <- function(n = 500) {
   # \U0001f9f3 Simulation eines Kundendatensatzes f\u00fcr ein Reiseb\u00fcro
   # ---------------------------------------------------
   
-  set.seed(123)  # f\u00fcr Reproduzierbarkeit
-  
   # Beispielhafte Zielgruppen mit Wahrscheinlichkeiten
   zielgruppen <- c("Frauen", "M\u00e4nner", "J\u00fcngere (<30)", "Mittlere (30\u201350)", "\u00c4ltere (60+)")
   p_zielgruppen <- c(0.25, 0.25, 0.20, 0.20, 0.10)
@@ -89,12 +87,13 @@ reisekunden <- function(n = 500) {
   )
   
   
-  bedrock::label(daten, TRUE) <- "Ein Reiseb\u00fcro will die Unterschiede in den Reisepr\u00e4ferenzen 
+  bedrock::label(daten, TRUE) <- c("die ID des Kunden", "das Geschlecht", "das Alter",
+                                   "die Zielgruppe", "das letzte Reiseziel",
+                                   "die ge\u00e4usserte Motivation")
+  
+  bedrock::label(daten) <- "Ein Reiseb\u00fcro will die Unterschiede in den Reisepr\u00e4ferenzen 
           nach Geschlecht und Altersgruppe abbilden, wie sie typischerweise 
           in Marktanalysen beobachtet werden."
-  
-  bedrock::label(daten) <- c("die ID des Kunden", "das Alter", "die Zielgruppe", "das letzte Reiseziel",
-                             "die ge\u00e4usserte Motivation")
   
   return(daten)
   

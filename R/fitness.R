@@ -32,7 +32,7 @@ fitness <- function(n){
     ),
     zuwachs <- 
       round(( - 0.05 * alter  - 4 * (geschlecht=="w") + 
-                30 * N(training)/3 + rnorm(n, mean = 0, sd = 5)), 
+                30 * num(training)/3 + rnorm(n, mean = 0, sd = 5)), 
             0)
   )
   d.set$kgewicht <- rnorm(nrow(d.set), mean = 70, sd=6.2)

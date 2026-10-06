@@ -27,7 +27,7 @@ kredit <- function(n){
     ),
     kredit <- 
       round(10 + 5 * finanzwissen + 0.8 * einkommen + 
-              15 * N(beschäftigung) + rnorm(n, mean = 0, sd = 5), 
+              15 * num(beschäftigung) + rnorm(n, mean = 0, sd = 5), 
             0)
   )
   

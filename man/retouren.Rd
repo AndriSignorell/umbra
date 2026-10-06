@@ -4,14 +4,14 @@
 \alias{retouren}
 \title{Garantiefälle elektronischer Geräte}
 \usage{
-retouren(n = 1248, p = 0.016, name_x)
+retouren(n = 1248, p = 0.016, nameX)
 }
 \arguments{
 \item{n}{ungefähre Gesamtzahl der zu erzeugenden Verkäufe.}
 
 \item{p}{derzeit nicht ausgewertetes Kompatibilitätsargument.}
 
-\item{name_x}{derzeit nicht ausgewertetes Kompatibilitätsargument.}
+\item{nameX}{derzeit nicht ausgewertetes Kompatibilitätsargument.}
 }
 \value{
 ein gelabelter \code{data.frame} mit Verkaufsnummer, Garantiefall,

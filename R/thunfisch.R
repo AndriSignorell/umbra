@@ -1,10 +1,11 @@
 
 ## Fiktive Lehrdaten:
 ## Atlantischer Blauflossenthunfisch in norwegischen Gewässern
-thunfisch <- function(seed) {
+##
+## The function draws from the random stream of the session and sets no
+## seed: bedrock::withSeed(seed, thunfisch()) gives what thunfisch(seed) gave.
+thunfisch <- function() {
 
-  set.seed(seed)
-  
   n <- 360L
   
   ## Untersuchungszeitraum: je 180 Fische

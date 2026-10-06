@@ -7,7 +7,8 @@
 akku()
 }
 \value{
-ein gelabelter \code{data.frame} mit Akkutyp und Anzahl Ladezyklen.
+ein gelabelter \code{data.frame} mit Identifikation, Akkutyp und Anzahl
+Ladezyklen.
 }
 \description{
 Liefert Stichprobendaten zur Anzahl Ladezyklen bis zum Ersatz für zwei

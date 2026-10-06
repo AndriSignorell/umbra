@@ -1,4 +1,30 @@
 
+#' Schlafdauer von Erwachsenen
+#'
+#' Erzeugt Umfragedaten zur durchschnittlichen Schlafdauer pro Nacht, mit
+#' Alter, Geschlecht, Berufsgruppe und wöchentlichem Sportpensum.
+#'
+#' @param n anzahl der Personen mit einer Angabe zur Schlafdauer.
+#' @param nNa anzahl der zusätzlichen Personen ohne Angabe zur Schlafdauer.
+#'
+#' @return ein gelabelter `data.frame` mit `n + nNa` Zeilen: Schlafdauer,
+#'   Alter, Geschlecht, Berufsgruppe und Sportstunden pro Woche.
+#'
+#' @details Die Schlafdauer ist so erzeugt, dass die Klassen von 3 bis 10
+#' Stunden mit Breite 1 die Häufigkeiten einer Normalverteilung mit
+#' Mittelwert 6.2 und Standardabweichung 1.3 Stunden tragen. Die
+#' Klassenhäufigkeiten werden gerundet und decken die Ränder der Verteilung
+#' nicht ab; die Zahl der gültigen Werte kann deshalb leicht unter `n`
+#' liegen (991 bei `n = 1000`), die fehlenden sind `NA`. Wer länger schläft,
+#' treibt im Mittel etwas weniger Sport.
+#'
+#' Geeignete Verfahren sind Klasseneinteilungen, empirische Verteilungen,
+#' Kennzahlen und der Umgang mit fehlenden Werten.
+#'
+#' @concept 1.2 Daten und Skalen
+#' @concept 1.3 Empirische Verteilungen
+#' @concept 1.4 Kennzahlen
+#' @concept 1.5 Bivariate Datenanalyse
 #' @export
 schlafdauer <- function(n=156, nNa=0){
   

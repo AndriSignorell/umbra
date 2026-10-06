@@ -25,14 +25,17 @@ hotdog <- function(){
   
   d.set <- data.frame(id=seq(sum(m)), untable(m))
   
-  bedrock::label(d.set,) <- bedrock::mGsub(c("&level_x&", "&level_y&"),
-                                           c(paste(gettextf("<em>%s</em>", gsub("&nbsp;","", rownames(m))), collapse=", "),
-                                             paste(gettextf("<em>%s</em>", colnames(m)), collapse=", ")),
-                                           "Die Betreiberin einer Würstchenbude möchte feststellen, ob es 
+  # bedrock::mGsub() takes the text first, then patterns and replacements
+  bedrock::label(d.set,) <- mGsub(
+    "Die Betreiberin einer Würstchenbude möchte feststellen, ob es 
            einen Zusammenang zwischen dem Geschlecht ihrer Kundschaft (&level_x&) 
            und der bevorzugten 
            Sauce (&level_y&) gibt. Sie führt über eine Woche lang detailliert Buch über 
-           ihre Verkäufe."
+           ihre Verkäufe.",
+    patterns = c("&level_x&", "&level_y&"),
+    replacements = c(
+      paste(gettextf("<em>%s</em>", gsub("&nbsp;","", rownames(m))), collapse=", "),
+      paste(gettextf("<em>%s</em>", colnames(m)), collapse=", "))
   ) 
   
   return(d.set)

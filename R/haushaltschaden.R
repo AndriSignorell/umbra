@@ -5,8 +5,8 @@
 #' Versicherungsschäden.
 #'
 #' @param n anzahl der zu erzeugenden Schäden.
-#' @param mu_small mittelwert der normalverteilten kleinen Schäden.
-#' @param sd_small standardabweichung der normalverteilten kleinen Schäden.
+#' @param muSmall mittelwert der normalverteilten kleinen Schäden.
+#' @param sdSmall standardabweichung der normalverteilten kleinen Schäden.
 #' @param scale skalenparameter der Pareto-verteilten grossen Schäden.
 #' @param shape formparameter der Pareto-verteilten grossen Schäden.
 #'
@@ -21,7 +21,7 @@
 #' @concept 1.9 Zufallsvariablen und Verteilungen
 #' @concept 1.11 Kontinuierliche Verteilungen
 #' @export
-haushaltschaden <- function(n, mu_small=1000, sd_small=500, 
+haushaltschaden <- function(n, muSmall=1000, sdSmall=500, 
                             scale=2500, shape=2.5){
   # example:
   
@@ -35,7 +35,7 @@ haushaltschaden <- function(n, mu_small=1000, sd_small=500,
     ans
   }
   
-  small_damages <- abs(rnorm(n, mean = mu_small, sd = sd_small))
+  small_damages <- abs(rnorm(n, mean = muSmall, sd = sdSmall))
   large_damages <- rpareto(n, scale = scale, shape = shape)
   
   # Kombinierte Verteilung (80% kleine, 20% grosse Schäden)

@@ -4,14 +4,14 @@
 \alias{haushaltschaden}
 \title{Schäden in der Hausratversicherung}
 \usage{
-haushaltschaden(n, mu_small = 1000, sd_small = 500, scale = 2500, shape = 2.5)
+haushaltschaden(n, muSmall = 1000, sdSmall = 500, scale = 2500, shape = 2.5)
 }
 \arguments{
 \item{n}{anzahl der zu erzeugenden Schäden.}
 
-\item{mu_small}{mittelwert der normalverteilten kleinen Schäden.}
+\item{muSmall}{mittelwert der normalverteilten kleinen Schäden.}
 
-\item{sd_small}{standardabweichung der normalverteilten kleinen Schäden.}
+\item{sdSmall}{standardabweichung der normalverteilten kleinen Schäden.}
 
 \item{scale}{skalenparameter der Pareto-verteilten grossen Schäden.}
 

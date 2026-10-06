@@ -1,25 +1,49 @@
 
+# Draft of a further data set: diet by sex, age group and residence -------
+#
+# Not exported yet. This used to be a script at the top level of the file:
+# it ran when the package was built, set a seed there, and left its objects
+# `n`, `data` and `get_probs` in the namespace -- where `n` silently served
+# every generator that had forgotten to declare it. The data set of the
+# script is bedrock::withSeed(123, vegetarian()).
 
-set.seed(123)
+vegetarian <- function(n = 10000) {
+  
+  # -----------------------------
+  # Basisvariablen
+  # -----------------------------
+  res <- data.frame(
+    id = 1:n,
+    sex = sample(c("female", "male"), n, replace = TRUE, prob = c(0.5, 0.5)),
+    age_group = sample(c("18-35", "36-60", "60+"), n, replace = TRUE, 
+                       prob = c(0.35, 0.45, 0.20)),
+    residence = sample(c("urban", "rural"), n, replace = TRUE, 
+                       prob = c(0.7, 0.3))
+  )
+  
+  # -----------------------------
+  # Ernährung simulieren
+  # -----------------------------
+  res$diet <- mapply(function(sex, age_group, residence) {
+    probs <- .dietProbs(sex, age_group, residence)
+    sample(names(probs), 1, prob = probs)
+  }, res$sex, res$age_group, res$residence)
+  
+  res
+  
+  # Ergebnis checken:
+  #   prop.table(table(res$diet))
+  # nach Gruppen:
+  #   prop.table(table(res$diet, res$sex), 2)
+  #   prop.table(table(res$diet, res$age_group), 2)
+  #   prop.table(table(res$diet, res$residence), 2)
+}
 
-n <- 10000
-
-# -----------------------------
-# Basisvariablen
-# -----------------------------
-data <- data.frame(
-  id = 1:n,
-  sex = sample(c("female", "male"), n, replace = TRUE, prob = c(0.5, 0.5)),
-  age_group = sample(c("18-35", "36-60", "60+"), n, replace = TRUE, 
-                     prob = c(0.35, 0.45, 0.20)),
-  residence = sample(c("urban", "rural"), n, replace = TRUE, 
-                     prob = c(0.7, 0.3))
-)
 
 # -----------------------------
 # Funktion zur Wahrscheinlichkeitsanpassung
 # -----------------------------
-get_probs <- function(sex, age_group, residence) {
+.dietProbs <- function(sex, age_group, residence) {
   
   # Basis
   p <- c(
@@ -65,25 +89,3 @@ get_probs <- function(sex, age_group, residence) {
   
   return(p)
 }
-
-# -----------------------------
-# Ernährung simulieren
-# -----------------------------
-data$diet <- mapply(function(sex, age_group, residence) {
-  probs <- get_probs(sex, age_group, residence)
-  sample(names(probs), 1, prob = probs)
-}, data$sex, data$age_group, data$residence)
-
-# -----------------------------
-# Ergebnis checken
-# -----------------------------
-prop.table(table(data$diet))
-
-# nach Gruppen
-prop.table(table(data$diet, data$sex), 2)
-prop.table(table(data$diet, data$age_group), 2)
-prop.table(table(data$diet, data$residence), 2)
-
-
-
-

@@ -4,7 +4,8 @@
 #' Liefert Stichprobendaten zur Anzahl Ladezyklen bis zum Ersatz für zwei
 #' Akkutypen.
 #'
-#' @return ein gelabelter `data.frame` mit Akkutyp und Anzahl Ladezyklen.
+#' @return ein gelabelter `data.frame` mit Identifikation, Akkutyp und Anzahl
+#'   Ladezyklen.
 #'
 #' @details Geeignete Verfahren sind Kennzahlen, Konfidenzintervalle,
 #' Zweistichproben-t-Test und nichtparametrische Zweistichprobentests.
@@ -20,7 +21,8 @@ akku <- function(){
   
   d.set <- .packageData("akku.xlsx")
   
-  bedrock::label(d.set, TRUE) <- c("Typ des Akkus",     
+  bedrock::label(d.set, TRUE) <- c("Identifikationsnummer des Akkus",
+                                   "Typ des Akkus",     
                                    "Anzahl Ladezyklen bis zum Ersatz" 
   )
   

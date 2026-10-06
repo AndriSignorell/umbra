@@ -28,14 +28,17 @@ vegi <- function(){
   
   d.set <- data.frame(id=seq(sum(m)), untable(m))
   
-  bedrock::label(d.set,) <- bedrock::mGsub(c("&level_x&", "&level_y&"),
-                                           c(paste(gettextf("<em>%s</em>", gsub("&nbsp;","", rownames(m))), collapse=", "),
-                                             paste(gettextf("<em>%s</em>", colnames(m)), collapse=", ")),
-                                           "Anhand von Einkaufsbelegen verschiedener Grossverteiler haben 
+  # bedrock::mGsub() takes the text first, then patterns and replacements
+  bedrock::label(d.set,) <- mGsub(
+    "Anhand von Einkaufsbelegen verschiedener Grossverteiler haben 
                          Forschende untersucht, wie viel 
                          Fleisch Schweizer Haushalte konsumieren. Es interessiert, ob es 
                          sich die Kundschaft der Grossverteiler sich in ihren 
-                         Ernährungsgewohnheiten unterscheidet."
+                         Ernährungsgewohnheiten unterscheidet.",
+    patterns = c("&level_x&", "&level_y&"),
+    replacements = c(
+      paste(gettextf("<em>%s</em>", gsub("&nbsp;","", rownames(m))), collapse=", "),
+      paste(gettextf("<em>%s</em>", colnames(m)), collapse=", "))
   ) 
   
   return(d.set)

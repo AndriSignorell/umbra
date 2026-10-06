@@ -41,6 +41,8 @@ verzoegerung <- function(){
       in der Tabelle bedeutet dass die Lieferng fr\u00fcher als geplant vom Lager abging.
       Es interessiert nun, ob das Memo zu geringeren Versp\u00e4tungen gef\u00fchrt hat.'
   
+  return(d.set)
+  
 }
 
 

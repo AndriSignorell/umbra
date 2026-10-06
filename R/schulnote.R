@@ -4,6 +4,8 @@
 #' Erzeugt Daten zur schulischen Leistung in Abhängigkeit von Bildschirmzeit,
 #' Schlafdauer und Freizeitaktivitäten.
 #'
+#' @param n anzahl der zu erzeugenden Jugendlichen.
+#'
 #' @return ein gelabelter `data.frame` mit den Einflussgrössen und der Note.
 #'
 #' @details Geeignete Verfahren sind bivariate Analysen und multiple lineare
@@ -14,7 +16,7 @@
 #' @concept 1.5 Bivariate Datenanalyse
 #' @concept 1.19 Multiple lineare Regression
 #' @export
-schulnote <- function(){
+schulnote <- function(n){
   
   d.dat <- within(
     data.frame(
@@ -23,10 +25,10 @@ schulnote <- function(){
       freizeitaktivitäten = ordered(sample(1:3, size = n, replace = TRUE),
                                     labels=c("selten", "gelegentlich", "häufig"))
     ),
-    note <- Winsorize(
+    note <- winsorize(
       round(2 + -0.3*bildschirmzeit + 0.4*schlafdauer + 
-              0.2* N(freizeitaktivitäten) + rnorm(n, mean = 0, sd = 0.5), 
-            2), val = c(1,6))
+              0.2* num(freizeitaktivitäten) + rnorm(n, mean = 0, sd = 0.5), 
+            2), limits = c(1,6))
   )
   
   label(d.dat, TRUE) <- c("Bildschirmzeit [Stunden pro Tag]",

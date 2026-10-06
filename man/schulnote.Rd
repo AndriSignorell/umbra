@@ -4,7 +4,10 @@
 \alias{schulnote}
 \title{Schulnoten und Lebensgewohnheiten}
 \usage{
-schulnote()
+schulnote(n)
+}
+\arguments{
+\item{n}{anzahl der zu erzeugenden Jugendlichen.}
 }
 \value{
 ein gelabelter \code{data.frame} mit den Einflussgrössen und der Note.

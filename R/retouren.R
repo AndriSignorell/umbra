@@ -5,7 +5,7 @@
 #'
 #' @param n ungefähre Gesamtzahl der zu erzeugenden Verkäufe.
 #' @param p derzeit nicht ausgewertetes Kompatibilitätsargument.
-#' @param name_x derzeit nicht ausgewertetes Kompatibilitätsargument.
+#' @param nameX derzeit nicht ausgewertetes Kompatibilitätsargument.
 #'
 #' @return ein gelabelter `data.frame` mit Verkaufsnummer, Garantiefall,
 #'   Hersteller und Produkt.
@@ -21,14 +21,14 @@
 #' @concept 1.13 Grundlagen des Signifikanztests
 #' @concept 1.15 Chi-Quadrat-Tests
 #' @export
-retouren <- function(n=1248, p=0.016, name_x){
+retouren <- function(n=1248, p=0.016, nameX){
   
-  hersteller <- function(n, p, name_x){
+  hersteller <- function(n, p, nameX){
     
     data.frame(
       garantiefall = sample(c("nein", "ja"), size = n, replace = TRUE, 
                             prob = c(1-p, p)),
-      hersteller = name_x,
+      hersteller = nameX,
       produkt    = sample(c("TV", "DVD-Player", "Beamer", "HiFi"), 
                           size = n, replace = TRUE)
       
@@ -36,16 +36,20 @@ retouren <- function(n=1248, p=0.016, name_x){
   }
   
   
-  d.ctr <- data.frame(name_x = c("LG", "Samsung", "Sony","Panasonic"),
+  d.ctr <- data.frame(nameX = c("LG", "Samsung", "Sony","Panasonic"),
                       p = c(0.014, 0.015, 0.018, 0.02)*4,
                       n = round(c(.18, .33, .39, .10)*n))
   
   
   d.dat <- do.call(rbind, lapply(seq(nrow(d.ctr)), 
                                  function(i) with(d.ctr[i, ], 
-                                                  hersteller(n, p, name_x)))  )
+                                                  hersteller(n, p, nameX)))  )
   
-  d.dat$verkaufsnr <- round(runif(n=n)*1000+1000)
+  # the group sizes are rounded shares of n and need not add up to it
+  d.dat$verkaufsnr <- round(runif(n=nrow(d.dat))*1000+1000)
+  
+  # shuffled first: subsetting drops the label of the data set
+  d.dat <- sampleX(d.dat[, c(4,1:3)])
   
   bedrock::label(d.dat) <- "
     Ein Onlineanbieter elektronischer Geräte zählt die Garantiefälle einer Marke innerhalb 
@@ -59,7 +63,7 @@ retouren <- function(n=1248, p=0.016, name_x){
     &nbsp;&nbsp;&nbsp;<strong>&link&</strong>&nbsp;&nbsp;&nbsp;. 
     "
   
-  return(sampleX(d.dat[, c(4,1:3)]))
+  return(d.dat)
   
 }
 

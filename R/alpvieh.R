@@ -1,5 +1,27 @@
 
-
+#' Schlachtgewicht von Kälbern nach der Sömmerung
+#'
+#' Erzeugt Daten zum Schlachtgewicht von Kälbern in Abhängigkeit von
+#' Fütterungsart, Alpaufenthalt, Startgewicht, Alter und Geschlecht.
+#'
+#' @param n anzahl der zu erzeugenden Kälber.
+#'
+#' @return ein gelabelter `data.frame` mit Schlachtgewicht, Fütterungsart,
+#'   Alpaufenthalt, Startgewicht, Alter und Geschlecht.
+#'
+#' @details Das Schlachtgewicht folgt einem linearen Modell: gegenüber
+#' keiner Zufütterung bringt Heu 10 kg und Kraftfutter 25 kg, ein
+#' Alpaufenthalt 5 kg; dazu kommen 0.6 kg je kg Startgewicht und 2 kg je
+#' Altersmonat. Das Geschlecht hat keinen Einfluss. Die Streuung beträgt
+#' 5 kg.
+#'
+#' Geeignete Verfahren sind bivariate Analysen, Varianzanalyse und multiple
+#' lineare Regression mit Dummy-Variablen.
+#'
+#' @concept 1.4 Kennzahlen
+#' @concept 1.5 Bivariate Datenanalyse
+#' @concept 1.16 Varianzanalyse
+#' @concept 1.19 Multiple lineare Regression
 #' @export
 alpvieh <- function(n=100){
   
@@ -36,7 +58,7 @@ alpvieh <- function(n=100){
                                    "das Alter bei Beginn der S\u00f6mmerung (Monate)",
                                    "das Geschlecht des Kalbes")
   
-  bedrock::label(d.set,) <- as.html("In einer Untersuchung sollte analysiert werden, welche Einflussgr\u00f6ssen 
+  bedrock::label(d.set,) <- asHtml("In einer Untersuchung sollte analysiert werden, welche Einflussgr\u00f6ssen 
   das Schlachtgewicht (Zielvariable) in [kg] von K\u00e4lbern nach der S\u00f6mmerung bestimmen. 
   Die F\u00fctterungsart beschreibt, ob und in welchem Umfang w\u00e4hrend der S\u00f6mmerung 
   zugef\u00fcttert wurde. Es wird angenommen, dass zus\u00e4tzliche F\u00fctterung - insbesondere 

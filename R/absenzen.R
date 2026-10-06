@@ -2,9 +2,10 @@
 
 ## Fiktive Lehrdaten:
 ## Absenzen im Betrieb
-absenzen <- function(seed=260725) {
-    
-  set.seed(seed)
+##
+## The function draws from the random stream of the session and sets no
+## seed. The data set used so far is bedrock::withSeed(260725, absenzen()).
+absenzen <- function() {
   
   n <- 240L
   

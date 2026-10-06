@@ -13,7 +13,6 @@ export(birthweight)
 export(blood)
 export(choco)
 export(detailhandel)
-export(detailhändler)
 export(dose)
 export(eier)
 export(einkauf)
@@ -35,6 +34,7 @@ export(reisekunden)
 export(retouren)
 export(rinder)
 export(rndPairs)
+export(rndWord)
 export(schlafdauer)
 export(schnee)
 export(schulnote)
@@ -47,25 +47,34 @@ export(tierklinik)
 export(twoSamp)
 export(vegi)
 export(verzoegerung)
-export(verzögerung)
 export(vocabular)
-importFrom(DescToolsX,cutQ)
-importFrom(bedrock,`label<-`)
-importFrom(bedrock,label)
-importFrom(bedrock,nf)
-importFrom(bedrock,num)
-importFrom(bedrock,roundTo)
-importFrom(bedrock,sampleX)
-importFrom(bedrock,setNamesX)
-importFrom(bedrock,untable)
-importFrom(pharos,as.html)
-importFrom(stats,na.omit)
-importFrom(stats,pnorm)
-importFrom(stats,quantile)
-importFrom(stats,rbeta)
-importFrom(stats,rbinom)
-importFrom(stats,relevel)
-importFrom(stats,rgamma)
-importFrom(stats,rnorm)
-importFrom(stats,rpois)
-importFrom(stats,runif)
+importFrom(DescToolsX,
+  cutQ,
+  generation
+)
+importFrom(bedrock,
+  `label<-`,
+  label,
+  mGsub,
+  nf,
+  num,
+  rBetaShape,
+  roundTo,
+  sampleX,
+  setNamesX,
+  untable,
+  winsorize
+)
+importFrom(pharos,asHtml)
+importFrom(stats,
+  na.omit,
+  pnorm,
+  quantile,
+  rbeta,
+  rbinom,
+  relevel,
+  rgamma,
+  rnorm,
+  rpois,
+  runif
+)

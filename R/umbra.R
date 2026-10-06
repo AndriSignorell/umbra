@@ -1,8 +1,18 @@
+# Drafts of further data sets ---------------------------------------------
+#
+# Not exported yet. Like every generator of the package they draw from the
+# random stream of the session and set no seed (design rules 8.3). The data
+# sets as they were with the seeds formerly set inside the functions:
+#
+#   bedrock::withSeed(123, homeoffice())
+#   bedrock::withSeed(321, amt())
+#   bedrock::withSeed(555, leistung())
+#   bedrock::withSeed(777, schlaf())
 
 
-homeoffice <- function() {  # 
-  
-set.seed(123)
+
+
+homeoffice <- function() {
 
 n <- 250
 
@@ -135,8 +145,6 @@ daten
 
 
 amt <- function() {
-  
-set.seed(321)
 
 n <- 300
 
@@ -286,8 +294,6 @@ daten
 
 leistung <- function(){
   
-  set.seed(555)
-  
   n <- 180
   
   # --------------------------------
@@ -435,7 +441,6 @@ leistung <- function(){
 
 
 schlaf <- function(){
-  set.seed(777)
   
   n <- 220
   
